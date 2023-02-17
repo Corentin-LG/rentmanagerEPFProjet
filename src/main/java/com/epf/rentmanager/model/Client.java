@@ -4,34 +4,34 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Client {
-    private long ID;
-    private String lastName;
-    private String forName;
+    private long id;
+    private String nom;
+    private String prenom;
     private String email;
-    private LocalDate dateDeNaissance;
+    private LocalDate naissance;
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getNom() {
+        return nom;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getForName() {
-        return forName;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setForName(String forName) {
-        this.forName = forName;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getEmail() {
@@ -42,22 +42,33 @@ public class Client {
         this.email = email;
     }
 
-    public LocalDate getDateDeNaissance() {
-        return dateDeNaissance;
+    public LocalDate getNaissance() {
+        return naissance;
     }
 
-    public void setDateDeNaissance(LocalDate dateDeNaissance) {
-        this.dateDeNaissance = dateDeNaissance;
+    public void setNaissance(LocalDate naissance) {
+        this.naissance = naissance;
     }
 
-    public Client(long ID, String lastName, String forName, String email, LocalDate dateDeNaissance) {
-        this.ID = ID;
-        this.lastName = lastName;
-        this.forName = forName;
+    public Client(long id, String nom, String prenom, String email, LocalDate naissance) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
-        this.dateDeNaissance = dateDeNaissance;
+        this.naissance = naissance;
     }
     public Client() {
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", naissance=" + naissance +
+                '}';
     }
 
     @Override
@@ -65,11 +76,11 @@ public class Client {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return ID == client.ID && Objects.equals(lastName, client.lastName) && Objects.equals(forName, client.forName) && Objects.equals(email, client.email) && Objects.equals(dateDeNaissance, client.dateDeNaissance);
+        return id == client.id && Objects.equals(nom, client.nom) && Objects.equals(prenom, client.prenom) && Objects.equals(email, client.email) && Objects.equals(naissance, client.naissance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, lastName, forName, email, dateDeNaissance);
+        return Objects.hash(id, nom, prenom, email, naissance);
     }
 }

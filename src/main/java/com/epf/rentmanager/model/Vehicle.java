@@ -19,6 +19,16 @@ public class Vehicle {
     }
 
     @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", constructor='" + constructor + '\'' +
+                ", model='" + model + '\'' +
+                ", placesNumber=" + placesNumber +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Vehicle)) return false;

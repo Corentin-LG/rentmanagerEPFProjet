@@ -5,18 +5,31 @@ import java.util.Objects;
 
 public class Reservation {
     private long ID;
-    private long clientID;
-    private long vehicleID;
+    private Client client;
+    private Vehicle vehicle;
 
-    public Reservation(long ID, long clientID, long vehicleID, LocalDate begin, LocalDate end) {
+    private LocalDate begin;
+    private LocalDate end;
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "ID=" + ID +
+                ", client=" + client +
+                ", vehicle=" + vehicle +
+                ", begin=" + begin +
+                ", end=" + end +
+                '}';
+    }
+
+    public Reservation(long ID, Client client, Vehicle vehicle, LocalDate begin, LocalDate end) {
         this.ID = ID;
-        this.clientID = clientID;
-        this.vehicleID = vehicleID;
+        this.client = client;
+        this.vehicle = vehicle;
         this.begin = begin;
         this.end = end;
     }
-    public Reservation() {
-
+    public Reservation(){
     }
 
     @Override
@@ -24,12 +37,12 @@ public class Reservation {
         if (this == o) return true;
         if (!(o instanceof Reservation)) return false;
         Reservation that = (Reservation) o;
-        return ID == that.ID && clientID == that.clientID && vehicleID == that.vehicleID && Objects.equals(begin, that.begin) && Objects.equals(end, that.end);
+        return ID == that.ID && Objects.equals(client, that.client) && Objects.equals(vehicle, that.vehicle) && Objects.equals(begin, that.begin) && Objects.equals(end, that.end);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, clientID, vehicleID, begin, end);
+        return Objects.hash(ID, client, vehicle, begin, end);
     }
 
     public long getID() {
@@ -40,20 +53,20 @@ public class Reservation {
         this.ID = ID;
     }
 
-    public long getClientID() {
-        return clientID;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientID(long clientID) {
-        this.clientID = clientID;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public long getVehicleID() {
-        return vehicleID;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleID(long vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public LocalDate getBegin() {
@@ -71,8 +84,4 @@ public class Reservation {
     public void setEnd(LocalDate end) {
         this.end = end;
     }
-
-    private LocalDate begin;
-    private LocalDate end;
-
 }
