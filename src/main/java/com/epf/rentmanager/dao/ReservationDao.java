@@ -49,23 +49,23 @@ public class ReservationDao {
 
 	public List<Reservation> findAll() throws DaoException {
 		List<Reservation> reservations = new ArrayList<Reservation>();
-		/*try {
+		try {
 			Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(FIND_RESERVATIONS_QUERY);
 			while (rs.next()) {
 				long id = rs.getInt("id");
 				Client client = new Client();
-				long clientid = rs.getString("client");
+				long clientid = rs.getString("client_id");
 				long vehicleid = rs.getString("vehicle");
-				LocalDate begin = rs.getDate("begin").toLocalDate();
-				LocalDate end = rs.getDate("end").toLocalDate();
+				LocalDate begin = rs.getDate("debut").toLocalDate();
+				LocalDate end = rs.getDate("fin").toLocalDate();
 				reservations.add(new Reservation(id, client, vehicle, begin, end));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException();
-		}*/
+		}
 		return reservations;
 	}
 }
