@@ -4,48 +4,28 @@ import java.util.Objects;
 
 public class Vehicle {
     private long id;
-    private String constructor;
-    private String model;
-    private int placesNumber;
+    private String constructeur;
+    private String modele;
+    private int nb_places;
 
-    public Vehicle(long id, String constructor, String model, int placesNumber) {
+    public Vehicle(long vehicleId) {
+        this.id = vehicleId;
+    }
+
+    public Vehicle(long id, String constructeur, String modele, int nb_places) {
         this.id = id;
-        this.constructor = constructor;
-        this.model = model;
-        this.placesNumber = placesNumber;
+        this.constructeur = constructeur;
+        this.modele = modele;
+        this.nb_places = nb_places;
+    }
+
+    public Vehicle(long id, String constructeur, int nb_places) {
+        this.id = id;
+        this.constructeur = constructeur;
+        this.nb_places = nb_places;
     }
 
     public Vehicle() {
-
-    }
-
-    public Vehicle(long id, String constructor, int placesNumber) {
-        this.id = id;
-        this.constructor = constructor;
-        this.placesNumber = placesNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", constructor='" + constructor + '\'' +
-                ", model='" + model + '\'' +
-                ", placesNumber=" + placesNumber +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Vehicle)) return false;
-        Vehicle vehicle = (Vehicle) o;
-        return id == vehicle.id && placesNumber == vehicle.placesNumber && Objects.equals(constructor, vehicle.constructor) && Objects.equals(model, vehicle.model);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, constructor, model, placesNumber);
     }
 
     public long getId() {
@@ -56,27 +36,50 @@ public class Vehicle {
         this.id = id;
     }
 
-    public String getConstructor() {
-        return constructor;
+    public String getConstructeur() {
+        return constructeur;
     }
 
-    public void setConstructor(String constructor) {
-        this.constructor = constructor;
+    public void setConstructeur(String constructeur) {
+        this.constructeur = constructeur;
     }
 
-    public String getModel() {
-        return model;
+    public String getModele() {
+        return modele;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModele(String modele) {
+        this.modele = modele;
     }
 
-    public int getPlacesNumber() {
-        return placesNumber;
+    public int getNb_places() {
+        return nb_places;
     }
 
-    public void setPlacesNumber(int placesNumber) {
-        this.placesNumber = placesNumber;
+    public void setNb_places(int nb_places) {
+        this.nb_places = nb_places;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vehicle)) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return id == vehicle.id && nb_places == vehicle.nb_places && Objects.equals(constructeur, vehicle.constructeur) && Objects.equals(modele, vehicle.modele);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, constructeur, modele, nb_places);
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Vehicule{" +
+                "id=" + id +
+                ", constructeur='" + constructeur + '\'' +
+                ", modele='" + modele + '\'' +
+                ", nb_places=" + nb_places +
+                '}';
     }
 }

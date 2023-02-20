@@ -1,6 +1,5 @@
 package com.epf.rentmanager.service;
 
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
@@ -33,13 +32,15 @@ public class VehicleService {
     }
 
     public Vehicle findById(long id) throws ServiceException {
-        // TODO: récupérer un véhicule par son id
-
-        return new Vehicle();
+        try {
+            return VehicleDao.getInstance().findById(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException();
+        }
     }
 
     public List<Vehicle> findAll() throws ServiceException {
-        // TODO: récupérer tous les clients
         try {
             return VehicleDao.getInstance().findAll();
         } catch (DaoException e) {
@@ -49,3 +50,4 @@ public class VehicleService {
     }
 
 }
+

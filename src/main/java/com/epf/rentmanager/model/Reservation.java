@@ -4,54 +4,29 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Reservation {
-    private long ID;
-    private Client client;
-    private Vehicle vehicle;
+    Client client;
+    Vehicle vehicle;
+    private long id;
+    private LocalDate debut;
+    private LocalDate fin;
 
-    private LocalDate begin;
-    private LocalDate end;
-
-    public Reservation(long ID, Client client, Vehicle vehicle, LocalDate begin, LocalDate end) {
-        this.ID = ID;
-        this.client = client;
-        this.vehicle = vehicle;
-        this.begin = begin;
-        this.end = end;
+    public Reservation(long id, Client client_id, Vehicle vehicle_id, LocalDate debut, LocalDate fin) {
+        this.id = id;
+        this.client = client_id;
+        this.vehicle = vehicle_id;
+        this.debut = debut;
+        this.fin = fin;
     }
 
     public Reservation() {
     }
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "ID=" + ID +
-                ", client=" + client +
-                ", vehicle=" + vehicle +
-                ", begin=" + begin +
-                ", end=" + end +
-                '}';
+    public long getId() {
+        return id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Reservation)) return false;
-        Reservation that = (Reservation) o;
-        return ID == that.ID && Objects.equals(client, that.client) && Objects.equals(vehicle, that.vehicle) && Objects.equals(begin, that.begin) && Objects.equals(end, that.end);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, client, vehicle, begin, end);
-    }
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Client getClient() {
@@ -70,19 +45,43 @@ public class Reservation {
         this.vehicle = vehicle;
     }
 
-    public LocalDate getBegin() {
-        return begin;
+    public LocalDate getDebut() {
+        return debut;
     }
 
-    public void setBegin(LocalDate begin) {
-        this.begin = begin;
+    public void setDebut(LocalDate debut) {
+        this.debut = debut;
     }
 
-    public LocalDate getEnd() {
-        return end;
+    public LocalDate getFin() {
+        return fin;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setFin(LocalDate fin) {
+        this.fin = fin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reservation)) return false;
+        Reservation that = (Reservation) o;
+        return id == that.id && client == that.client && vehicle == that.vehicle && Objects.equals(debut, that.debut) && Objects.equals(fin, that.fin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client, vehicle, debut, fin);
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", client_id=" + client +
+                ", vehicule_id=" + vehicle +
+                ", debut=" + debut +
+                ", fin=" + fin +
+                '}';
     }
 }

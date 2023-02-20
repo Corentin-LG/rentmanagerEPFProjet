@@ -4,29 +4,26 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Client {
+
     private long id;
     private String nom;
     private String prenom;
     private String email;
     private LocalDate naissance;
 
-    public Client(long id, String nom, String prenom, String email, LocalDate naissance) {
+    public Client(long clientId) {
+        this.id = clientId;
+    }
+
+    public Client(long id, String lastname, String firstname, String mail, LocalDate birthdate) {
+        this.nom = lastname;
+        this.prenom = firstname;
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.naissance = naissance;
+        this.email = mail;
+        this.naissance = birthdate;
     }
 
     public Client() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -43,6 +40,14 @@ public class Client {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -62,17 +67,6 @@ public class Client {
     }
 
     @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", naissance=" + naissance +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
@@ -82,6 +76,17 @@ public class Client {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nom, prenom, email, naissance);
+        return Objects.hash(nom, prenom, id, email, naissance);
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Client{" +
+                "lastname='" + nom + '\'' +
+                ", firstname='" + prenom + '\'' +
+                ", id=" + id +
+                ", mail='" + email + '\'' +
+                ", birthdate=" + naissance +
+                '}';
     }
 }
