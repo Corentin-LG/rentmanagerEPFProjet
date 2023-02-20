@@ -1,12 +1,10 @@
 package com.epf.rentmanager.main;
+//le test UI
 
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
-
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.List;
+import com.epf.rentmanager.service.VehicleService;
 
 public class Tests {
     public static void main(String[] args) {
@@ -18,8 +16,11 @@ public class Tests {
         System.out.println(clientTesteur2.hashCode());*/
 
 
+
+
         try {
             System.out.println(ClientService.getInstance().findAll());
+            System.out.println(VehicleService.getInstance().findAll());
         } catch (ServiceException e) {
             e.printStackTrace();
         }

@@ -14,8 +14,15 @@ public class Vehicle {
         this.model = model;
         this.placesNumber = placesNumber;
     }
+
     public Vehicle() {
 
+    }
+
+    public Vehicle(long id, String constructor, int placesNumber) {
+        this.id = id;
+        this.constructor = constructor;
+        this.placesNumber = placesNumber;
     }
 
     @Override

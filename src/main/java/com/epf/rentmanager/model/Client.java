@@ -10,6 +10,17 @@ public class Client {
     private String email;
     private LocalDate naissance;
 
+    public Client(long id, String nom, String prenom, String email, LocalDate naissance) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.naissance = naissance;
+    }
+
+    public Client() {
+    }
+
     public long getId() {
         return id;
     }
@@ -48,16 +59,6 @@ public class Client {
 
     public void setNaissance(LocalDate naissance) {
         this.naissance = naissance;
-    }
-
-    public Client(long id, String nom, String prenom, String email, LocalDate naissance) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.naissance = naissance;
-    }
-    public Client() {
     }
 
     @Override

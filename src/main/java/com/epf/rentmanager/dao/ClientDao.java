@@ -1,4 +1,5 @@
 package com.epf.rentmanager.dao;
+// le dao
 
 import java.sql.Connection;
 import java.sql.ResultSet;

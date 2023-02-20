@@ -1,10 +1,17 @@
 package com.epf.rentmanager.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
+import com.epf.rentmanager.persistence.ConnectionManager;
 
 public class VehicleDao {
 	
@@ -35,7 +42,26 @@ public class VehicleDao {
 	}
 
 	public List<Vehicle> findAll() throws DaoException {
-		return new ArrayList<Vehicle>();
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(FIND_VEHICLES_QUERY);
+			while (rs.next()) {
+				long id = rs.getInt("id");
+				String constructor = rs.getString("constructeur");
+				//String model = rs.getString("model");
+				int placesNumber = rs.getInt("nb_places");
+				vehicles.add(new Vehicle(id, constructor, placesNumber));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		//return new ArrayList<Client>();
+		// return clients;
+		return vehicles;
 		
 	}
 	

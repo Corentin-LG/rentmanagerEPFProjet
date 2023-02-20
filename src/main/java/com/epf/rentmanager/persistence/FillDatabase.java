@@ -1,15 +1,13 @@
 package com.epf.rentmanager.persistence;
 
+import org.h2.tools.DeleteDbFiles;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.h2.tools.DeleteDbFiles;
-
-import com.epf.rentmanager.persistence.ConnectionManager;
 
 public class FillDatabase {
 
@@ -23,7 +21,7 @@ public class FillDatabase {
         }
     }
 
-	private static void insertWithPreparedStatement() throws SQLException {
+    private static void insertWithPreparedStatement() throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         PreparedStatement createPreparedStatement = null;
 
@@ -36,9 +34,9 @@ public class FillDatabase {
             connection.setAutoCommit(false);
 
             for (String createQuery : createTablesQueries) {
-            	createPreparedStatement = connection.prepareStatement(createQuery);
-	            createPreparedStatement.executeUpdate();
-	            createPreparedStatement.close();
+                createPreparedStatement = connection.prepareStatement(createQuery);
+                createPreparedStatement.executeUpdate();
+                createPreparedStatement.close();
             }
 
             // Remplissage de la base avec des Vehicules et des Clients
@@ -47,12 +45,12 @@ public class FillDatabase {
             stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Peugeot', 4)");
             stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Seat', 4)");
             stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Nissan', 4)");
-            
+
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Dupont', 'Jean', 'jean.dupont@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Morin', 'Sabrina', 'sabrina.morin@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Afleck', 'Steeve', 'steeve.afleck@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Rousseau', 'Jacques', 'jacques.rousseau@email.com', '1988-01-22')");
-                    
+
             connection.commit();
             System.out.println("Success!");
         } catch (SQLException e) {

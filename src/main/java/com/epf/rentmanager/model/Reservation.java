@@ -11,6 +11,17 @@ public class Reservation {
     private LocalDate begin;
     private LocalDate end;
 
+    public Reservation(long ID, Client client, Vehicle vehicle, LocalDate begin, LocalDate end) {
+        this.ID = ID;
+        this.client = client;
+        this.vehicle = vehicle;
+        this.begin = begin;
+        this.end = end;
+    }
+
+    public Reservation() {
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
@@ -20,16 +31,6 @@ public class Reservation {
                 ", begin=" + begin +
                 ", end=" + end +
                 '}';
-    }
-
-    public Reservation(long ID, Client client, Vehicle vehicle, LocalDate begin, LocalDate end) {
-        this.ID = ID;
-        this.client = client;
-        this.vehicle = vehicle;
-        this.begin = begin;
-        this.end = end;
-    }
-    public Reservation(){
     }
 
     @Override
