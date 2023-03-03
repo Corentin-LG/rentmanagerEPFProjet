@@ -44,7 +44,7 @@ public class VehicleDao {
             while (rs.next()) {
                 vehicle.setId(id);
                 vehicle.setConstructeur(rs.getString("constructeur"));
-                // vehicle.setModele(rs.getString("prenom"));
+                //vehicle.setModele(rs.getString("modele")); //wip
                 vehicle.setNb_places(rs.getInt("nb_places"));
             }
             connection.close();
@@ -64,10 +64,11 @@ public class VehicleDao {
             while (rs.next()) {
                 long id = (rs.getInt("id"));
                 String constructeur = (rs.getString("constructeur"));
-                // String modele = (rs.getString("modele"));
+                //String modele = (rs.getString("modele")); //wip
                 int nb_places = (rs.getInt("nb_places"));
 
-                vehicles.add(new Vehicle(id, constructeur, nb_places));
+                vehicles.add(new Vehicle(id, constructeur, nb_places)); //wip
+                //vehicles.add(new Vehicle(id, constructeur, modele, nb_places)); //wip
             }
             connection.close();
         } catch (SQLException e) {

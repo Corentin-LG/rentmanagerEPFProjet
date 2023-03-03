@@ -27,7 +27,6 @@
                         <div class="box-body no-padding">
                             <table class="table table-striped">
                                 <tr>
-                                    <th style="width: 10px">#</th>
                                     <th>ID</th>
                                     <th>Voiture</th>
                                     <th>Client</th>

@@ -22,7 +22,7 @@ public class RentServlet extends HttpServlet {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/list.jsp").forward(request, response);
 
 
     }
