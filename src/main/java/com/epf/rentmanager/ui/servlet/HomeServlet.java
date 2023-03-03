@@ -1,4 +1,4 @@
-package com.epf.rentmanager.servlet;
+package com.epf.rentmanager.ui.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
