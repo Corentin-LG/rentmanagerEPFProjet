@@ -1,4 +1,5 @@
 com\epf\rentmanager\model\Reservation.class
+com\epf\rentmanager\ui\servlet\RentServlet.class
 com\epf\rentmanager\exception\DaoException.class
 com\epf\rentmanager\exception\ServiceException.class
 com\epf\rentmanager\service\ReservationService.class
@@ -9,6 +10,7 @@ com\epf\rentmanager\dao\ReservationDao.class
 com\epf\rentmanager\utils\IOUtils.class
 com\epf\rentmanager\ui\servlet\HomeServlet.class
 com\epf\rentmanager\persistence\FillDatabase.class
+com\epf\rentmanager\ui\servlet\CarServlet.class
 com\epf\rentmanager\main\Main.class
 com\epf\rentmanager\service\ClientService.class
 com\epf\rentmanager\model\Vehicle.class

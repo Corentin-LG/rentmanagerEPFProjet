@@ -28,6 +28,7 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th style="width: 10px">#</th>
+                                    <th>ID</th>
                                     <th>Voiture</th>
                                     <th>Client</th>
                                     <th>Debut</th>
@@ -35,32 +36,16 @@
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td>1.</td>
-                                    <td>Renault Clio</td>
-                                    <td>John Doe</td>
-                                    <td>10/01/2019</td>
-                                    <td>13/01/2019</td>
-                                    <td>
-                                        <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
-                                            <i class="fa fa-play"></i>
-                                        </a>
-                                        <a class="btn btn-success disabled" href="#">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-danger disabled" href="#">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Citroen C2</td>
-                                    <td>Jane Doe</td>
-                                    <td>10/01/2019</td>
-                                    <td>13/01/2019</td>
+                                <c:forEach items="${reservations}" var="reservation">
+                                    <td>${reservation.id}</td>
+                                    <td>${reservation.vehicle}.</td>
+                                    <td>${reservation.client}</td>
+                                    <td>${reservation.debut}</td>
+                                    <td>${reservation.fin}</td>
+                                    <!--<td>John Doe</td>-->
                                     <td>
-                                        <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=2">
+                                        <a class="btn btn-primary disabled" href="car-detail.html">
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">
@@ -71,6 +56,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                </c:forEach>
                             </table>
                         </div>
                         <!-- /.box-body -->

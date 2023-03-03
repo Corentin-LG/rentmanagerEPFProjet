@@ -28,17 +28,20 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th style="width: 10px">#</th>
+                                    <th>ID</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Email</th>
+                                    <th>Date de naissance</th>
                                     <th>Action</th>
                                 </tr>
                                 <c:forEach items="${clients}" var="client">
                                 <tr>
                                     <td>${client.id}</td>
-                                    <td>${client.prenom}</td>
                                     <td>${client.nom}</td>
+                                    <td>${client.prenom}</td>
                                     <td>${client.email}</td>
+                                    <td>${client.naissance}</td>
                                     <td>
                                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${client.id}<">
                                         <i class="fa fa-play"></i>
@@ -52,23 +55,6 @@
                                     </td>
                                 </tr>
                                  </c:forEach>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Jane</td>
-                                    <td>Doe</td>
-                                    <td>jane.doe@epf.fr</td>
-                                    <td>
-                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=2">
-                                            <i class="fa fa-play"></i>
-                                        </a>
-                                        <a class="btn btn-success disabled" href="#">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-danger disabled" href="#">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                         <!-- /.box-body -->
