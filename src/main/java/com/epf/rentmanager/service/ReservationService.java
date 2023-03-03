@@ -78,5 +78,8 @@ public class ReservationService {
             throw new ServiceException();
         }
     }
+    public int count() {
+        return ReservationDao.getInstance().count();
+    }
 
 }

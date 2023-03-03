@@ -77,6 +77,26 @@ public class VehicleDao {
         }
         return vehicles;
     }
+    public int count() {
+        List<Vehicle> vehicles = new ArrayList<Vehicle>();
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(FIND_VEHICLES_QUERY);
+            while (rs.next()) {
+                long id = (rs.getInt("id"));
+                String constructeur = (rs.getString("constructeur"));
+                //String modele = (rs.getString("modele")); //wip
+                int nb_places = (rs.getInt("nb_places"));
 
+                vehicles.add(new Vehicle(id, constructeur, nb_places)); //wip
+                //vehicles.add(new Vehicle(id, constructeur, modele, nb_places)); //wip
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicles.size();
+    }
 
 }

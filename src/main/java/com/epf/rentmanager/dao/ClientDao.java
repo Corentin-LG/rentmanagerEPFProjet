@@ -90,4 +90,24 @@ public class ClientDao {
         return clients;
     }
 
+    public int count() {
+        List<Client> clients = new ArrayList<Client>();
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String email = rs.getString("email");
+                LocalDate date = rs.getDate("naissance").toLocalDate();
+                clients.add(new Client(id, nom, prenom, email, date));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clients.size();
+    }
 }

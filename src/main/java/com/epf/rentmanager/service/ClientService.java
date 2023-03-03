@@ -49,6 +49,7 @@ public class ClientService {
 
     }
 
-//    public Object count() {
-//    }
+    public int count() {
+            return ClientDao.getInstance().count();
+    }
 }

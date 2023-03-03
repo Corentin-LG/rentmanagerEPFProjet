@@ -125,4 +125,32 @@ public class ReservationDao {
         }
         return reservation;
     }
+
+    public int count() {
+        List<Reservation> reservation = new ArrayList<Reservation>();
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(FIND_RESERVATIONS_QUERY);
+            while (rs.next()) {
+                long id = (rs.getInt("id"));
+                long clientId = (rs.getInt("client_id"));
+                long vehicleId = (rs.getInt("vehicle_id"));
+
+                //Client client = ClientDao.getInstance().findById(clientId);
+                //Vehicle vehicle = VehicleDao.getInstance().findById(vehicleId);
+                Client client = new Client(clientId);
+                Vehicle vehicle = new Vehicle(vehicleId);
+
+                LocalDate debut = (rs.getDate("debut").toLocalDate());
+                LocalDate fin = (rs.getDate("fin").toLocalDate());
+
+                reservation.add(new Reservation(id, client, vehicle, debut, fin));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservation.size();
+    }
 }

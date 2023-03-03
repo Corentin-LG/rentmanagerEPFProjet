@@ -1,5 +1,6 @@
 package com.epf.rentmanager.service;
 
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
@@ -47,6 +48,9 @@ public class VehicleService {
             e.printStackTrace();
             throw new ServiceException();
         }
+    }
+    public int count() {
+        return VehicleDao.getInstance().count();
     }
 
 }
