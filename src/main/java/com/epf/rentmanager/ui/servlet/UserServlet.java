@@ -13,8 +13,14 @@ import java.io.IOException;
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private ClientService clientService = ClientService.getInstance();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
+        try {
+            request.setAttribute("clients", this.clientService.findAll());
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
 //        ClientService clientService = ClientService.getInstance();
 //        int nbClients = clientService.getCount();
 //        request.setAttribute("nbClients", nbClients);
