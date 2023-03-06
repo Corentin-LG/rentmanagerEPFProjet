@@ -49,8 +49,13 @@ public class VehicleService {
             throw new ServiceException();
         }
     }
-    public int count() {
-        return VehicleDao.getInstance().count();
+    public int count() throws ServiceException {
+        try{
+            return vehicleDao.count();
+        } catch (DaoException e){
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
     }
 
 }

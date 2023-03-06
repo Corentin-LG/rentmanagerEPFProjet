@@ -16,5 +16,6 @@ C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\r
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\servlet\HomeServlet.java
+C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\servlet\VehicleCreateServlet.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\servlet\RentServlet.java

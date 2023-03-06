@@ -17,6 +17,7 @@ public class ClientDao {
     private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
     private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
     private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
+    private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS count FROM Client;";
     private static ClientDao instance = null;
 
     private ClientDao() {
@@ -68,11 +69,6 @@ public class ClientDao {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
             while (rs.next()) {
-				/*System.out.println(rs.getInt("id"));
-				System.out.println(rs.getString("lastName"));
-				System.out.println(rs.getString("forName"));
-                System.out.println(rs.getDate("dateDeNaissance"));*/
-
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
                 String prenom = rs.getString("prenom");
@@ -85,12 +81,10 @@ public class ClientDao {
             e.printStackTrace();
             throw new DaoException();
         }
-        //return new ArrayList<Client>();
-        // return clients;
         return clients;
     }
 
-    public int count() {
+    public int count2() {
         List<Client> clients = new ArrayList<Client>();
         try {
             Connection connection = ConnectionManager.getConnection();
@@ -109,5 +103,22 @@ public class ClientDao {
             e.printStackTrace();
         }
         return clients.size();
+    }
+
+    public int count() throws DaoException {
+        int nbClients = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(COUNT_CLIENTS_QUERY);
+            if (rs.next()) {
+                nbClients = rs.getInt("count");
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return nbClients;
     }
 }

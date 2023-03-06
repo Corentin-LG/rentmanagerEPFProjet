@@ -19,6 +19,7 @@ public class ReservationDao {
     private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
     private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
     private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
+    private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS count FROM Reservation;";
     private static ReservationDao instance = null;
 
     private ReservationDao() {
@@ -127,30 +128,19 @@ public class ReservationDao {
     }
 
     public int count() {
-        List<Reservation> reservation = new ArrayList<Reservation>();
+        int nbReservations = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(FIND_RESERVATIONS_QUERY);
-            while (rs.next()) {
-                long id = (rs.getInt("id"));
-                long clientId = (rs.getInt("client_id"));
-                long vehicleId = (rs.getInt("vehicle_id"));
-
-                //Client client = ClientDao.getInstance().findById(clientId);
-                //Vehicle vehicle = VehicleDao.getInstance().findById(vehicleId);
-                Client client = new Client(clientId);
-                Vehicle vehicle = new Vehicle(vehicleId);
-
-                LocalDate debut = (rs.getDate("debut").toLocalDate());
-                LocalDate fin = (rs.getDate("fin").toLocalDate());
-
-                reservation.add(new Reservation(id, client, vehicle, debut, fin));
+            ResultSet rs = statement.executeQuery(COUNT_RESERVATIONS_QUERY);
+            if (rs.next()) {
+                nbReservations = rs.getInt("count");
             }
+            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return reservation.size();
+        return nbReservations;
     }
 }

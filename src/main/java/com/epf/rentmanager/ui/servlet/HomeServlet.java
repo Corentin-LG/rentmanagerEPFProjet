@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     /**
-     *
+     *Mapper, Try(ressources)
      */
     private static final long serialVersionUID = 1L;
     private ClientService clientService = ClientService.getInstance();
@@ -25,9 +25,21 @@ public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("nbClients", clientService.count());
-        request.setAttribute("nbVoitures", vehicleService.count());
-        request.setAttribute("nbReservations", reservationService.count());
+        try {
+            request.setAttribute("nbClients", clientService.count());
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            request.setAttribute("nbVoitures", vehicleService.count());
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            request.setAttribute("nbReservations", reservationService.count());
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
     }
 
