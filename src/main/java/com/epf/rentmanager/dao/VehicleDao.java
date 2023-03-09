@@ -28,7 +28,24 @@ public class VehicleDao {
     }
 
     public long create(Vehicle vehicle) throws DaoException {
-        return 0;
+        long vehicleId = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, vehicle.getConstructeur());
+            preparedStatement.setInt(2, vehicle.getNb_places());
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            while (rs.next()) {
+                vehicleId = rs.getLong("id");
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return vehicleId;
     }
 
     public long delete(Vehicle vehicle) throws DaoException {

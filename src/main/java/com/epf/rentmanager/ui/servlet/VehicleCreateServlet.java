@@ -1,6 +1,7 @@
 package com.epf.rentmanager.ui.servlet;
 
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.VehicleService;
 
 import javax.servlet.ServletException;
@@ -24,8 +25,16 @@ public class VehicleCreateServlet extends HttpServlet {
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse
-            response) throws ServletException, IOException {
-
+        response) throws ServletException, IOException {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setConstructeur(request.getParameter("manufacturer"));
+        vehicle.setNb_places(Integer.parseInt(request.getParameter("seats")));
+        try {
+            VehicleService.getInstance().create(vehicle);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("/rentmanager/cars");
     }
 
 }
