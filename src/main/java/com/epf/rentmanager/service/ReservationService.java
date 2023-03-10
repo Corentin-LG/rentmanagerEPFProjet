@@ -6,25 +6,17 @@ import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class ReservationService {
 
-    public static ReservationService instance;
     private final ReservationDao reservationDao;
 
-    private ReservationService() {
-        this.reservationDao = ReservationDao.getInstance();
-    }
-
-    public static ReservationService getInstance() {
-        if (instance == null) {
-            instance = new ReservationService();
-        }
-
-        return instance;
+    public ReservationService(ReservationDao reservationDao){
+        this.reservationDao = reservationDao;
     }
 
     public Reservation findById(long id) throws ServiceException {
@@ -38,7 +30,7 @@ public class ReservationService {
 
     public long create(Reservation reservation) throws ServiceException {
         try {
-            return ReservationDao.getInstance().create(reservation);
+            return reservationDao.create(reservation);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);
@@ -48,10 +40,10 @@ public class ReservationService {
     public List<Reservation> findResaByClientId(long id) throws ServiceException {
         try {
             List<Reservation> reservation = new ArrayList<Reservation>();
-            reservation = ReservationDao.getInstance().findResaByClientId(id);
+            reservation = reservationDao.findResaByClientId(id);
             for (Reservation r : reservation) {
-                r.setVehicle(VehicleDao.getInstance().findById(r.getVehicle().getId()));
-                r.setClient(ClientDao.getInstance().findById(r.getClient().getId()));
+                r.setVehicle(reservationDao.getVehicleDao().findById(r.getVehicle().getId()));
+                r.setClient(reservationDao.getClientDao().findById(r.getClient().getId()));
             }
             return reservation;
         } catch (DaoException e) {
@@ -63,10 +55,10 @@ public class ReservationService {
     public List<Reservation> findResaByVehicleId(long id) throws ServiceException {
         try {
             List<Reservation> reservation = new ArrayList<Reservation>();
-            reservation = ReservationDao.getInstance().findResaByVehicleId(id);
+            reservation = reservationDao.findResaByVehicleId(id);
             for (Reservation r : reservation) {
-                r.setVehicle(VehicleDao.getInstance().findById(r.getVehicle().getId()));
-                r.setClient(ClientDao.getInstance().findById(r.getClient().getId()));
+                r.setVehicle(reservationDao.getVehicleDao().findById(r.getVehicle().getId()));
+                r.setClient(reservationDao.getClientDao().findById(r.getClient().getId()));
             }
             return reservation;
         } catch (DaoException e) {
@@ -78,10 +70,10 @@ public class ReservationService {
     public List<Reservation> findAll() throws ServiceException {
         try {
             List<Reservation> reservation = new ArrayList<Reservation>();
-            reservation = ReservationDao.getInstance().findAll();
+            reservation = reservationDao.findAll();
             for (Reservation r : reservation) {
-                r.setVehicle(VehicleDao.getInstance().findById(r.getVehicle().getId()));
-                r.setClient(ClientDao.getInstance().findById(r.getClient().getId()));
+                r.setVehicle(reservationDao.getVehicleDao().findById(r.getVehicle().getId()));
+                r.setClient(reservationDao.getClientDao().findById(r.getClient().getId()));
             }
             return reservation;
         } catch (DaoException e) {

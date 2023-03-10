@@ -1,8 +1,10 @@
 package com.epf.rentmanager.ui.servlet;
 
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/cars/create")
+@Component
 public class VehicleCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private VehicleService vehicleService = VehicleService.getInstance();
+    private VehicleService vehicleService = new VehicleService(new VehicleDao());
     protected void doGet(HttpServletRequest request, HttpServletResponse
             response) throws ServletException, IOException {
         try {
@@ -30,7 +33,7 @@ public class VehicleCreateServlet extends HttpServlet {
         vehicle.setConstructeur(request.getParameter("manufacturer"));
         vehicle.setNb_places(Integer.parseInt(request.getParameter("seats")));
         try {
-            VehicleService.getInstance().create(vehicle);
+            vehicleService.create(vehicle);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

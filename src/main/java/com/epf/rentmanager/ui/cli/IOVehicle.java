@@ -1,5 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.VehicleService;
@@ -10,7 +11,7 @@ import java.util.List;
 public class IOVehicle {
 	public static void listVehicles() {
 		try {
-			for (Vehicle vehicle : VehicleService.getInstance().findAll()) {
+			for (Vehicle vehicle : new VehicleService(new VehicleDao()).findAll()) {
 				IOUtils.print(vehicle.toString());
 			}
 		} catch (ServiceException e) {
@@ -24,7 +25,7 @@ public class IOVehicle {
 		vehicle.setConstructeur(IOUtils.readString("Entrez le nom du contructeur : ", true));
 		vehicle.setNb_places(IOUtils.readInt("Entrez le nom du contructeur : "));
 		try {
-			long ID = VehicleService.getInstance().create(vehicle);
+			long ID = new VehicleService(new VehicleDao()).create(vehicle);
 			IOUtils.print("Le véhicule [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -33,7 +34,7 @@ public class IOVehicle {
 	}
 
 	public static Vehicle selectVehicle() throws ServiceException {
-		List<Vehicle> vehicleList = VehicleService.getInstance().findAll();
+		List<Vehicle> vehicleList = new VehicleService(new VehicleDao()).findAll();
 		IOUtils.print("Sélectionner un véhicule");
 		int index;
 		int min = Integer.MAX_VALUE;

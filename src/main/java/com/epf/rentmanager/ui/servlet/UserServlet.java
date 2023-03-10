@@ -1,8 +1,10 @@
 package com.epf.rentmanager.ui.servlet;
 
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/users")
+@Component
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private ClientService clientService = ClientService.getInstance();
+    private ClientService clientService = new ClientService(new ClientDao());
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try {
             request.setAttribute("clients", this.clientService.findAll());

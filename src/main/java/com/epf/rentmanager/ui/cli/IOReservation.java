@@ -1,5 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ReservationService;
@@ -11,7 +12,7 @@ import java.util.List;
 public class IOReservation {
 	public static void listReservations() {
 		try {
-			for (Reservation reservation : ReservationService.getInstance().findAll()) {
+			for (Reservation reservation : new ReservationService(new ReservationDao()).findAll()) {
 				IOUtils.print(reservation.toString());
 			}
 		} catch (ServiceException e) {
@@ -31,7 +32,7 @@ public class IOReservation {
 				dateFin = IOUtils.readDate("Entrez une date de fin de réservation : ", true);
 			} while (dateFin.isBefore(reservation.getDebut()));
 			reservation.setFin(dateFin);
-			long ID = ReservationService.getInstance().create(reservation);
+			long ID = new ReservationService(new ReservationDao()).create(reservation);
 			IOUtils.print("La réservation [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -40,7 +41,7 @@ public class IOReservation {
 	}
 
 	public static Reservation selectReservation() throws ServiceException {
-		List<Reservation> reservationList = ReservationService.getInstance().findAll();
+		List<Reservation> reservationList = new ReservationService(new ReservationDao()).findAll();
 		int index;
 		int min = Integer.MAX_VALUE;
 		int max = Integer.MIN_VALUE;

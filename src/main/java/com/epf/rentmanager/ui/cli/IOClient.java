@@ -1,5 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
@@ -11,7 +12,7 @@ import java.util.List;
 public class IOClient {
 	public static void listClients() {
 		try {
-			for (Client client : ClientService.getInstance().findAll()) {
+			for (Client client : new ClientService(new ClientDao()).findAll()) {
 				IOUtils.print(client.toString());
 			}
 		} catch (ServiceException e) {
@@ -31,7 +32,7 @@ public class IOClient {
 		} while (!email.matches("^(.+)@(\\S+)$"));
 		client.setEmail(email);
 		try {
-			long ID = ClientService.getInstance().create(client);
+			long ID = new ClientService(new ClientDao()).create(client);
 			IOUtils.print("Le client [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -41,7 +42,7 @@ public class IOClient {
 
 	public static Client selectClient() throws ServiceException {
 		IOUtils.print("Sélectionner un client");
-		List<Client> clientList = ClientService.getInstance().findAll();
+		List<Client> clientList = new ClientService(new ClientDao()).findAll();
 		int index;
 		int min = Integer.MAX_VALUE;
 		int max = Integer.MIN_VALUE;

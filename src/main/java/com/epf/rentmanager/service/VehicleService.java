@@ -1,30 +1,18 @@
 package com.epf.rentmanager.service;
 
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
-
+@Repository
 public class VehicleService {
-
-    public static VehicleService instance;
     private final VehicleDao vehicleDao;
 
-    private VehicleService() {
-        this.vehicleDao = VehicleDao.getInstance();
+    public VehicleService(VehicleDao vehicleDao){
+        this.vehicleDao = vehicleDao;
     }
-
-    public static VehicleService getInstance() {
-        if (instance == null) {
-            instance = new VehicleService();
-        }
-        return instance;
-    }
-
     public long create(Vehicle vehicle) throws ServiceException {
         try {
             if (vehicle.getConstructeur().isBlank()) {
@@ -33,7 +21,8 @@ public class VehicleService {
             if (vehicle.getNb_places() <= 0) {
                 throw new ServiceException("Une voiture a au moins une place");
             }
-            return VehicleDao.getInstance().create(vehicle);
+            //return VehicleDao.getInstance().create(vehicle);
+            return new VehicleDao().create(vehicle);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);
@@ -42,7 +31,7 @@ public class VehicleService {
 
     public Vehicle findById(long id) throws ServiceException {
         try {
-            return VehicleDao.getInstance().findById(id);
+            return vehicleDao.findById(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException();
@@ -51,7 +40,7 @@ public class VehicleService {
 
     public List<Vehicle> findAll() throws ServiceException {
         try {
-            return VehicleDao.getInstance().findAll();
+            return vehicleDao.findAll();
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException();
