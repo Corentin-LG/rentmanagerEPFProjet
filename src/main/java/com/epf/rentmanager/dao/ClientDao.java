@@ -31,7 +31,26 @@ public class ClientDao {
     }
 
     public long create(Client client) throws DaoException {
-        return 0;
+        long clientId = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT_QUERY,Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, client.getNom());
+            preparedStatement.setString(2, client.getPrenom());
+            preparedStatement.setString(3, client.getEmail());
+            preparedStatement.setDate(4, Date.valueOf(client.getNaissance()));
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            while (rs.next()) {
+                clientId = rs.getLong("id");
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return clientId;
     }
 
     public long delete(Client client) throws DaoException {
@@ -63,8 +82,6 @@ public class ClientDao {
     public List<Client> findAll() throws DaoException {
         List<Client> clients = new ArrayList<Client>();
         try {
-
-
             Connection connection = ConnectionManager.getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);

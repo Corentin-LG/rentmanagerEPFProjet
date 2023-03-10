@@ -5,6 +5,7 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.utils.IOUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class IOClient {
@@ -19,22 +20,22 @@ public class IOClient {
 	}
 
 	public static void createClient() {
-		IOUtils.print("Création d'un client");
 		Client client = new Client();
-		client.setPrenom(IOUtils.readString("Entrez le nom : ", true).toUpperCase());
-		client.setPrenom(IOUtils.readString("Entrez le prénom : ", true));
-		client.setNaissance(IOUtils.readDate("Entre la date de naissance (jj/mm/aaaa) : ", true));
+		IOUtils.print("Création d'un client");
+		client.setNom(IOUtils.readString("Entrez le nom :", true).toUpperCase());
+		client.setPrenom(IOUtils.readString("Entrez le prénom :", true));
+		client.setNaissance(IOUtils.readDate("Entrez la date de naissance [jj/mm/aaaa] :", true));
 		String email;
 		do {
-			email = IOUtils.readString("Entrez l'adresse courriel : ", true);
+			email = IOUtils.readString("Entrez l'adresse courriel :", true);
 		} while (!email.matches("^(.+)@(\\S+)$"));
 		client.setEmail(email);
 		try {
-			long resId = ClientService.getInstance().create(client);
-			IOUtils.print("Le client a été créé avec l'identifiant " + resId);
+			long ID = ClientService.getInstance().create(client);
+			IOUtils.print("Le client [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			IOUtils.print("Le client n'a pas pu être créé.");
+			IOUtils.print("Le client n'a pas été créé");
 		}
 	}
 
