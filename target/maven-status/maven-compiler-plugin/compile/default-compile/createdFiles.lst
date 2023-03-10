@@ -10,6 +10,7 @@ com\epf\rentmanager\dao\ReservationDao.class
 com\epf\rentmanager\main\Main.class
 com\epf\rentmanager\model\Vehicle.class
 com\epf\rentmanager\dao\ClientDao.class
+com\epf\rentmanager\appConfig\AppConfiguration.class
 com\epf\rentmanager\ui\cli\IOClient.class
 com\epf\rentmanager\ui\servlet\UserServlet.class
 com\epf\rentmanager\ui\cli\IOVehicle.class
