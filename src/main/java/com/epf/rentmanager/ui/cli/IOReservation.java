@@ -20,22 +20,22 @@ public class IOReservation {
 	}
 
 	public static void createReservation() {
+		Reservation reservation = new Reservation();
 		IOUtils.print("Création d'une réservation");
-		Reservation res = new Reservation();
 		try {
-			res.setClient(IOClient.selectClient());
-			res.setVehicle(IOVehicle.selectVehicle());
-			res.setDebut(IOUtils.readDate("Entrez une date de début de réservation : ", true));
-			LocalDate end;
+			reservation.setClient(IOClient.selectClient());
+			reservation.setVehicle(IOVehicle.selectVehicle());
+			reservation.setDebut(IOUtils.readDate("Entrez une date de début de réservation :", true));
+			LocalDate dateFin;
 			do {
-				end = IOUtils.readDate("Entrez une date de fin de réservation : ", true);
-			} while (end.isBefore(res.getDebut()));
-			res.setFin(end);
-			long resId = ReservationService.getInstance().create(res);
-			IOUtils.print("La réservation a été créée avec l'identifiant " + resId);
+				dateFin = IOUtils.readDate("Entrez une date de fin de réservation : ", true);
+			} while (dateFin.isBefore(reservation.getDebut()));
+			reservation.setFin(dateFin);
+			long ID = ReservationService.getInstance().create(reservation);
+			IOUtils.print("La réservation [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			IOUtils.print("La réservation n'a pas pu être créée.");
+			IOUtils.print("La réservation n'a pas pu être créée");
 		}
 	}
 
@@ -51,9 +51,8 @@ public class IOReservation {
 				min = Integer.min(min, (int) id);
 				max = Integer.max(max, (int) id);
 			}
-			index = IOUtils.readInt("Entrez un indice : ");
+			index = IOUtils.readInt("Entrez un indice :");
 		} while (index < min || index >= max);
-
 		return reservationList.get(index - 1);
 	}
 }

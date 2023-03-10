@@ -54,7 +54,6 @@ public class IOClient {
 			}
 			index = IOUtils.readInt("Entrez un indice : ");
 		} while (index < min || index >= max);
-
 		return clientList.get(index - 1);
 	}
 }

@@ -22,16 +22,16 @@ public class ClientService {
         if (instance == null) {
             instance = new ClientService();
         }
-
         return instance;
     }
+
     public long create(Client client) throws ServiceException {
         try {
             if (client.getPrenom().isBlank()) {
-                throw new ServiceException("First name cannot be empty.");
+                throw new ServiceException("Il n'y a pas de prénom");
             }
             if (client.getNom().isBlank()) {
-                throw new ServiceException("Last name cannot be empty.");
+                throw new ServiceException("Il n'y a pas de nom");
             }
             client.setNom(client.getNom().toUpperCase());
             return ClientDao.getInstance().create(client);

@@ -19,27 +19,22 @@ public class IOVehicle {
 	}
 
 	public static void createVehicle() {
+		Vehicle vehicle = new Vehicle();
 		IOUtils.print("Création d'un véhicule");
-		Vehicle veh = new Vehicle();
-		veh.setConstructeur(IOUtils.readString("Entrez le nom du contructeur : ", true));
-		veh.setModele(IOUtils.readString("Entrez le modèle : ", false));
-		int seatCount;
-		do {
-			seatCount = IOUtils.readInt("Entrez le nombre de sièges : ");
-		} while (seatCount < 1 || seatCount > 200);
-		veh.setNb_places((short) seatCount);
+		vehicle.setConstructeur(IOUtils.readString("Entrez le nom du contructeur : ", true));
+		vehicle.setNb_places(IOUtils.readInt("Entrez le nom du contructeur : "));
 		try {
-			long resId = VehicleService.getInstance().create(veh);
-			IOUtils.print("Véhicule créé avec l'identifiant " + resId);
+			long ID = VehicleService.getInstance().create(vehicle);
+			IOUtils.print("Le véhicule [" + ID + "] a été créé");
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			IOUtils.print("Le véhicule n'a pas pu être créé.");
+			IOUtils.print("Le véhicule n'a pas pu être créé");
 		}
 	}
 
 	public static Vehicle selectVehicle() throws ServiceException {
-		IOUtils.print("Sélectionner un véhicule");
 		List<Vehicle> vehicleList = VehicleService.getInstance().findAll();
+		IOUtils.print("Sélectionner un véhicule");
 		int index;
 		int min = Integer.MAX_VALUE;
 		int max = Integer.MIN_VALUE;
@@ -50,9 +45,8 @@ public class IOVehicle {
 				min = Integer.min(min, (int) id);
 				max = Integer.max(max, (int) id);
 			}
-			index = IOUtils.readInt("Entrez un indice : ");
+			index = IOUtils.readInt("Entrez un indice :");
 		} while (index < min || index >= max);
-
 		return vehicleList.get(index - 1);
 	}
 }

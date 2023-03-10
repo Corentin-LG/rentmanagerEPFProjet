@@ -28,7 +28,7 @@ public class VehicleDao {
     }
 
     public long create(Vehicle vehicle) throws DaoException {
-        long vehicleId = 0;
+        long ID = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS);
@@ -37,7 +37,7 @@ public class VehicleDao {
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             while (rs.next()) {
-                vehicleId = rs.getLong("id");
+                ID = rs.getLong("id");
             }
             preparedStatement.close();
             connection.close();
@@ -45,7 +45,7 @@ public class VehicleDao {
             e.printStackTrace();
             throw new DaoException(e);
         }
-        return vehicleId;
+        return ID;
     }
 
     public long delete(Vehicle vehicle) throws DaoException {
@@ -95,6 +95,7 @@ public class VehicleDao {
         }
         return vehicles;
     }
+
     public int count() throws DaoException {
         int nbVehicle = 0;
         try{
@@ -111,5 +112,4 @@ public class VehicleDao {
         }
         return nbVehicle;
     }
-
 }

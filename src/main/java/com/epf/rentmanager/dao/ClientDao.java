@@ -9,7 +9,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-//import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 public class ClientDao {
 
@@ -31,10 +30,11 @@ public class ClientDao {
     }
 
     public long create(Client client) throws DaoException {
-        long clientId = 0;
+        long ID
+                = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT_QUERY,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT_QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, client.getNom());
             preparedStatement.setString(2, client.getPrenom());
             preparedStatement.setString(3, client.getEmail());
@@ -42,7 +42,7 @@ public class ClientDao {
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             while (rs.next()) {
-                clientId = rs.getLong("id");
+                ID = rs.getLong("id");
             }
             preparedStatement.close();
             connection.close();
@@ -50,7 +50,7 @@ public class ClientDao {
             e.printStackTrace();
             throw new DaoException(e);
         }
-        return clientId;
+        return ID;
     }
 
     public long delete(Client client) throws DaoException {
@@ -99,27 +99,6 @@ public class ClientDao {
             throw new DaoException();
         }
         return clients;
-    }
-
-    public int count2() {
-        List<Client> clients = new ArrayList<Client>();
-        try {
-            Connection connection = ConnectionManager.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String nom = rs.getString("nom");
-                String prenom = rs.getString("prenom");
-                String email = rs.getString("email");
-                LocalDate date = rs.getDate("naissance").toLocalDate();
-                clients.add(new Client(id, nom, prenom, email, date));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return clients.size();
     }
 
     public int count() throws DaoException {

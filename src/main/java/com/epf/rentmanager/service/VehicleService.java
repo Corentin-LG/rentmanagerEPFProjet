@@ -22,10 +22,8 @@ public class VehicleService {
         if (instance == null) {
             instance = new VehicleService();
         }
-
         return instance;
     }
-
 
     public long create(Vehicle vehicle) throws ServiceException {
         try {
@@ -41,6 +39,7 @@ public class VehicleService {
             throw new ServiceException(e);
         }
     }
+
     public Vehicle findById(long id) throws ServiceException {
         try {
             return VehicleDao.getInstance().findById(id);
@@ -58,6 +57,7 @@ public class VehicleService {
             throw new ServiceException();
         }
     }
+
     public int count() throws ServiceException {
         try{
             return vehicleDao.count();
@@ -66,6 +66,5 @@ public class VehicleService {
             throw new ServiceException(e);
         }
     }
-
 }
 

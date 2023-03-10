@@ -22,8 +22,8 @@ public class VehicleCreateServlet extends HttpServlet {
             e.printStackTrace();
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/create.jsp").forward(request, response);
-
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse
         response) throws ServletException, IOException {
         Vehicle vehicle = new Vehicle();
@@ -36,5 +36,4 @@ public class VehicleCreateServlet extends HttpServlet {
         }
         response.sendRedirect("/rentmanager/cars");
     }
-
 }

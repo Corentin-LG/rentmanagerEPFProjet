@@ -15,7 +15,6 @@ public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ClientService clientService = ClientService.getInstance();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
         try {
             request.setAttribute("clients", this.clientService.findAll());
         } catch (ServiceException e) {

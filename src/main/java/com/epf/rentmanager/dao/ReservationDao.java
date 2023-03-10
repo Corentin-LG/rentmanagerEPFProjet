@@ -36,7 +36,26 @@ public class ReservationDao {
     }
 
     public long create(Reservation reservation) throws DaoException {
-        return 0;
+        long ID = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_RESERVATION_QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setLong(1, reservation.getClient().getId());
+            preparedStatement.setLong(2, reservation.getVehicle().getId());
+            preparedStatement.setDate(3, Date.valueOf(reservation.getDebut()));
+            preparedStatement.setDate(4, Date.valueOf(reservation.getFin()));
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            while (rs.next()) {
+                ID = rs.getLong("id");
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return ID;
     }
 
     public long delete(Reservation reservation) throws DaoException {

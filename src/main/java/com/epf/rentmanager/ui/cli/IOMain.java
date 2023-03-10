@@ -21,8 +21,8 @@ public class IOMain {
 
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
-			case 1 -> afficherOptions();
-			case 2 -> displayCreateOptions();
+			case 1 -> afficherListOptions();
+			case 2 -> afficherCreateOptions();
 			case 3 -> {
 				IOUtils.print("Au revoir !");
 				fin = true;
@@ -31,7 +31,7 @@ public class IOMain {
 		}
 	}
 
-	public static void afficherOptions() {
+	public static void afficherListOptions() {
 		IOUtils.print("""
 		[1] Lister les clients
 		[2] Lister les véhicules
@@ -50,7 +50,7 @@ public class IOMain {
 		}
 	}
 
-	public static void displayCreateOptions() {
+	public static void afficherCreateOptions() {
 		IOUtils.print("""
 		[1] Créer un client
 		[2] Créer un véhicule

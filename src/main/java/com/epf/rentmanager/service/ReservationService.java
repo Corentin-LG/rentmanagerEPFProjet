@@ -35,14 +35,16 @@ public class ReservationService {
             throw new ServiceException(e);
         }
     }
+
     public long create(Reservation reservation) throws ServiceException {
         try {
-            return reservationDao.create(reservation);
+            return ReservationDao.getInstance().create(reservation);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);
         }
     }
+
     public List<Reservation> findResaByClientId(long id) throws ServiceException {
         try {
             List<Reservation> reservation = new ArrayList<Reservation>();
@@ -90,5 +92,4 @@ public class ReservationService {
     public int count() throws ServiceException {
         return reservationDao.count();
     }
-
 }
