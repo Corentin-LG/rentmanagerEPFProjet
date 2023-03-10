@@ -6,6 +6,8 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -20,6 +22,7 @@ public class ReservationDao {
     private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
     private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
     private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS count FROM Reservation;";
+    private static final String FIND_RESERVATION_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
     private static ReservationDao instance = null;
 
     private ReservationDao() {
@@ -50,9 +53,6 @@ public class ReservationDao {
             while (rs.next()) {
                 long id = (rs.getInt("id"));
                 long vehicleId = (rs.getInt("vehicle_id"));
-
-                //Client client = ClientDao.getInstance().findById(clientId);
-                //Vehicle vehicle = VehicleDao.getInstance().findById(vehicleId);
                 Client client = new Client(clientId);
                 Vehicle vehicle = new Vehicle(vehicleId);
 
@@ -79,9 +79,6 @@ public class ReservationDao {
             while (rs.next()) {
                 long id = (rs.getInt("id"));
                 long clientId = (rs.getInt("client_id"));
-
-                //Client client = ClientDao.getInstance().findById(clientId);
-                //Vehicle vehicle = VehicleDao.getInstance().findById(vehicleId);
                 Client client = new Client(clientId);
                 Vehicle vehicle = new Vehicle(vehicleId);
 
@@ -108,9 +105,6 @@ public class ReservationDao {
                 long id = (rs.getInt("id"));
                 long clientId = (rs.getInt("client_id"));
                 long vehicleId = (rs.getInt("vehicle_id"));
-
-                //Client client = ClientDao.getInstance().findById(clientId);
-                //Vehicle vehicle = VehicleDao.getInstance().findById(vehicleId);
                 Client client = new Client(clientId);
                 Vehicle vehicle = new Vehicle(vehicleId);
 
@@ -142,5 +136,28 @@ public class ReservationDao {
             e.printStackTrace();
         }
         return nbReservations;
+    }
+
+    public Reservation findById(long id) throws DaoException {
+        Reservation reservation = null;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_RESERVATION_QUERY);
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                reservation = new Reservation(id, ClientService.getInstance().findById(rs.getLong("client_id")),
+                        VehicleService.getInstance().findById(rs.getLong("vehicle_id")),
+                        rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate());
+            }
+
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException | ServiceException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return reservation;
     }
 }

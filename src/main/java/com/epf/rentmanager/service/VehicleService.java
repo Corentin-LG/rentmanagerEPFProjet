@@ -4,6 +4,7 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class VehicleService {
     public long create(Vehicle vehicle) throws ServiceException {
         try {
             if (vehicle.getConstructeur().isBlank()) {
-                throw new ServiceException("Constructor cannot be empty.");
+                throw new ServiceException("Il n'y a pas de constructeur");
             }
             if (vehicle.getNb_places() <= 0) {
                 throw new ServiceException("Une voiture a au moins une place");
@@ -40,7 +41,6 @@ public class VehicleService {
             throw new ServiceException(e);
         }
     }
-
     public Vehicle findById(long id) throws ServiceException {
         try {
             return VehicleDao.getInstance().findById(id);

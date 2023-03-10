@@ -1,7 +1,6 @@
 package com.epf.rentmanager.ui.servlet;
 
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/cars")
-public class CarServlet extends HttpServlet {
+public class VehicleListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private VehicleService vehicleService = VehicleService.getInstance();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -23,7 +22,5 @@ public class CarServlet extends HttpServlet {
             e.printStackTrace();
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/list.jsp").forward(request, response);
-
-
     }
 }

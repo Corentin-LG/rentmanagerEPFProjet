@@ -27,13 +27,22 @@ public class ReservationService {
         return instance;
     }
 
-
-    public long create(Reservation reservation) throws ServiceException {
-        // TODO: créer une Réservation
-
-        return 0;
+    public Reservation findById(long id) throws ServiceException {
+        try {
+            return reservationDao.findById(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
     }
-
+    public long create(Reservation reservation) throws ServiceException {
+        try {
+            return reservationDao.create(reservation);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
     public List<Reservation> findResaByClientId(long id) throws ServiceException {
         try {
             List<Reservation> reservation = new ArrayList<Reservation>();
