@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Tests {
     public static void main(String[] args) {
+
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
         ClientService clientService = context.getBean(ClientService.class);
         VehicleService vehicleService = context.getBean(VehicleService.class);
