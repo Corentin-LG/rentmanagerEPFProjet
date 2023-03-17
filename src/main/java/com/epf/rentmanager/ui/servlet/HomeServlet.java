@@ -25,17 +25,12 @@ public class HomeServlet extends HttpServlet {
      *Mapper, Try(ressources)
      */
     private static final long serialVersionUID = 1L;
-//    private ClientService clientService = new ClientService(new ClientDao());
-//    private VehicleService vehicleService = new VehicleService(new VehicleDao());
-//    private ReservationService reservationService = new ReservationService(new ReservationDao());
-
     @Autowired
     ClientService clientService;
     @Autowired
     VehicleService vehicleService;
     @Autowired
     ReservationService reservationService;
-
     @Override
     public void init() throws ServletException {
         super.init();
