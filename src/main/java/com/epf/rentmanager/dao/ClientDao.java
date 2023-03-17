@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class ClientDao {
 
@@ -18,6 +19,7 @@ public class ClientDao {
     private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
     private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
     private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS count FROM Client;";
+    private static final String COUNT_SAME_EMAIL_QUERY = "SELECT COUNT(email) AS count FROM Client WHERE email=?;";
 
     public ClientDao() {
     }
@@ -108,6 +110,42 @@ public class ClientDao {
             connection.close();
         } catch (SQLException e) {
             throw new DaoException(e);
+        }
+        return nbClients;
+    }
+
+    public int countSameEmail() throws DaoException {
+        int nbClients = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(COUNT_SAME_EMAIL_QUERY);
+            if (rs.next()) {
+                nbClients = rs.getInt("count");
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return nbClients;
+    }
+
+    public int countSameEmail(String email) throws DaoException {
+        int nbClients = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(COUNT_SAME_EMAIL_QUERY);
+            preparedStatement.setString(1, email);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                nbClients = rs.getInt("count");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException();
         }
         return nbClients;
     }

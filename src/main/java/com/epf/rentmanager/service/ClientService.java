@@ -31,6 +31,9 @@ public class ClientService {
             if (client.getNom().isBlank()) {
                 throw new ServiceException("Il n'y a pas de nom");
             }
+            if (client.getPrenom().length() <3 || client.getNom().length()<3){
+                throw new ServiceException("Votre nom ou votre prénom est trop court (<3)");
+            }
 
             LocalDate currentDate = LocalDate.now();
             LocalDate birthDate = client.getNaissance();
@@ -40,6 +43,11 @@ public class ClientService {
             if ( age < 18) {
                 throw new ClientException("Vous n'êtes pas majeur (+18)");
             }
+
+            if (countSameEmail(client.getEmail())>0){
+                throw new ClientException("Cet email existe déjà");
+            }
+
 
             client.setNom(client.getNom().toUpperCase());
             return clientDao.create(client);
@@ -73,6 +81,15 @@ public class ClientService {
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);
+        }
+    }
+
+    public int countSameEmail(String email) throws ServiceException {
+        try {
+            return clientDao.countSameEmail(email);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException();
         }
     }
 }
