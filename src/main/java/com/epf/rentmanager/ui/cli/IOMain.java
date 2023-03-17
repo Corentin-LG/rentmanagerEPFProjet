@@ -1,11 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
-import com.epf.rentmanager.appConfig.AppConfiguration;
-import com.epf.rentmanager.service.ClientService;
-import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.utils.IOUtils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 public class IOMain {
@@ -20,10 +15,7 @@ public class IOMain {
 
 	public static void afficherMenu() {
 		IOUtils.print("Que voulez-vous faire ?");
-		IOUtils.print("""
-		[1] Afficher les enregistrements
-		[2] Créer des enregistrements
-		[3] Quitter le programme""");
+		IOUtils.print(" [1] Afficher les enregistrements \n [2] Créer des enregistrements \n[3] Quitter le programme");
 
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
@@ -38,11 +30,8 @@ public class IOMain {
 	}
 
 	public static void afficherListOptions() {
-		IOUtils.print("""
-		[1] Lister les clients
-		[2] Lister les véhicules
-		[3] Lister les réservations
-		[4] Quitter le programme""");
+		IOUtils.print("[1] Lister les clients \n [2] Lister les véhicules \n [3] Lister les réservations \n [4] Quitter le programme");
+
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
 			case 1 -> IOClient.listClients();
@@ -57,11 +46,7 @@ public class IOMain {
 	}
 
 	public static void afficherCreateOptions() {
-		IOUtils.print("""
-		[1] Créer un client
-		[2] Créer un véhicule
-		[3] Créer une réservation
-		[4] Quitter le programme""");
+		IOUtils.print(" [1] Créer un client \n [2] Créer un véhicule \n [3] Créer une réservation \n [4] Quitter le programme");
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
 			case 1 -> IOClient.createClient();
@@ -74,9 +59,4 @@ public class IOMain {
 			default -> IOUtils.print("Le choix [" + choix + "] n'est pas reconnu");
 		}
 	}
-
-	ApplicationContext context = new
-			AnnotationConfigApplicationContext(AppConfiguration.class);
-	ClientService clientService = context.getBean(ClientService.class);
-	VehicleService vehicleService = context.getBean(VehicleService.class);
 }

@@ -1,4 +1,5 @@
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\servlet\VehicleListServlet.java
+C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\config\WebConfiguration.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\servlet\UserServlet.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\main\Main.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
@@ -14,10 +15,10 @@ C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\r
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\IOReservation.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\IOVehicle.java
+C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\config\AppConfiguration.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
-C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\appConfig\AppConfiguration.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\main\Tests.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 C:\Users\cocol\Downloads\EPF - 4A.1\Java\TD3\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
