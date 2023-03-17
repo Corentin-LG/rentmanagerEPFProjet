@@ -1,2 +1,5 @@
-package com.ensta.rentmanager;public class Tests {
+package com.ensta.rentmanager;
+
+public class Tests {
+
 }

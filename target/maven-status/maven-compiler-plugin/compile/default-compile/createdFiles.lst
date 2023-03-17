@@ -18,6 +18,7 @@ com\epf\rentmanager\config\WebConfiguration.class
 com\epf\rentmanager\service\ReservationService.class
 com\epf\rentmanager\main\Tests.class
 com\epf\rentmanager\utils\IOUtils.class
+com\epf\rentmanager\ui\servlet\UserCreateServlet.class
 com\epf\rentmanager\ui\servlet\HomeServlet.class
 com\epf\rentmanager\persistence\FillDatabase.class
 com\epf\rentmanager\service\ClientService.class

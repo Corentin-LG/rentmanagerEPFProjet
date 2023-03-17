@@ -87,6 +87,7 @@ public class ClientDao {
                 clients.add(new Client(id, nom, prenom, email, date));
 
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException();

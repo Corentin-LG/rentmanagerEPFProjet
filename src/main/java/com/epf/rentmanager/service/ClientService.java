@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class ClientService {
 
-    private ClientDao clientDao;
+    private final ClientDao clientDao;
     public ClientService(ClientDao clientDao){
         this.clientDao = clientDao;
     }
