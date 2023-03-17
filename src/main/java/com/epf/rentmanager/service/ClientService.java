@@ -1,12 +1,17 @@
 package com.epf.rentmanager.service;
 // le service
+// regroupe les contraintes métiers du genres : un client ne doit pas avoir moins de 18 ans
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.exception.ClientException;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +31,19 @@ public class ClientService {
             if (client.getNom().isBlank()) {
                 throw new ServiceException("Il n'y a pas de nom");
             }
+
+            LocalDate currentDate = LocalDate.now();
+            LocalDate birthDate = client.getNaissance();
+            Period diff = Period.between(birthDate, currentDate);
+            int age = diff.getYears();
+
+            if ( age < 18) {
+                throw new ClientException("Vous n'êtes pas majeur (+18)");
+            }
+
             client.setNom(client.getNom().toUpperCase());
             return clientDao.create(client);
-        } catch (DaoException e) {
+        } catch (DaoException | ClientException e) {
             e.printStackTrace();
             throw new ServiceException(e);
         }

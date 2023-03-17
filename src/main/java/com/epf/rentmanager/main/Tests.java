@@ -4,11 +4,15 @@ package com.epf.rentmanager.main;
 import com.epf.rentmanager.config.AppConfiguration;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Tests {
     public static void main(String[] args) {
@@ -25,5 +29,12 @@ public class Tests {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
+
+//        Client cl = new Client();
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+//        LocalDate localDate = LocalDate.now();
+//        System.out.println(dtf.format(localDate));
+//        cl.setNaissance(LocalDate.parse("2000-02-11"));
+//        System.out.println(localDate.format(dtf) - cl.getNaissance());
     }
 }
