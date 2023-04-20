@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public class VehicleDao {
 
-    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
     private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-    private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-    private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+    private static final String FIND_VEHICLE_QUERY= "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
+    private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
     private static final String COUNT_VEHICLES_QUERY = "SELECT COUNT(id) AS count FROM Vehicle;";
     public VehicleDao() {
     }
@@ -25,7 +25,8 @@ public class VehicleDao {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, vehicle.getConstructeur());
-            preparedStatement.setInt(2, vehicle.getNb_places());
+            preparedStatement.setString(2, vehicle.getModele());
+            preparedStatement.setInt(3, vehicle.getNb_places());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             while (rs.next()) {
@@ -54,7 +55,7 @@ public class VehicleDao {
             while (rs.next()) {
                 vehicle.setId(id);
                 vehicle.setConstructeur(rs.getString("constructeur"));
-                //vehicle.setModele(rs.getString("modele")); //wip
+                vehicle.setModele(rs.getString("modele")); //wip
                 vehicle.setNb_places(rs.getInt("nb_places"));
             }
             connection.close();
@@ -74,11 +75,10 @@ public class VehicleDao {
             while (rs.next()) {
                 long id = (rs.getInt("id"));
                 String constructeur = (rs.getString("constructeur"));
-                //String modele = (rs.getString("modele")); //wip
+                String modele = (rs.getString("modele")); //wip
                 int nb_places = (rs.getInt("nb_places"));
 
-                vehicles.add(new Vehicle(id, constructeur, nb_places)); //wip
-                //vehicles.add(new Vehicle(id, constructeur, modele, nb_places)); //wip
+                vehicles.add(new Vehicle(id, constructeur, modele, nb_places)); //wip
             }
             connection.close();
         } catch (SQLException e) {

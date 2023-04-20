@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Marque</th>
-                                    <!--<th>Modele</th>-->
+                                    <th>Modele</th>
                                     <th>Nombre de places</th>
                                     <!--<th>Propriétaire</th>-->
                                     <th>Action</th>
@@ -39,7 +39,7 @@
                                 <c:forEach items="${vehicles}" var="vehicle">
                                     <td>${vehicle.id}.</td>
                                     <td>${vehicle.constructeur}</td>
-                                    <!--<td>${vehicle.modele}</td>-->
+                                    <td>${vehicle.modele}</td>
                                     <td>${vehicle.nb_places}</td>
                                     <td>
                                         <a class="btn btn-primary disabled" href="car-detail.html">

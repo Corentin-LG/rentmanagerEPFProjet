@@ -21,7 +21,6 @@ public class VehicleService {
             if (vehicle.getNb_places() <= 0) {
                 throw new ServiceException("Une voiture a au moins une place");
             }
-            //return VehicleDao.getInstance().create(vehicle);
             return new VehicleDao().create(vehicle);
         } catch (DaoException e) {
             e.printStackTrace();

@@ -41,6 +41,7 @@ public class VehicleCreateServlet extends HttpServlet {
         response) throws ServletException, IOException {
         Vehicle vehicle = new Vehicle();
         vehicle.setConstructeur(request.getParameter("manufacturer"));
+        vehicle.setModele(request.getParameter("modele"));
         vehicle.setNb_places(Integer.parseInt(request.getParameter("seats")));
         try {
             vehicleService.create(vehicle);

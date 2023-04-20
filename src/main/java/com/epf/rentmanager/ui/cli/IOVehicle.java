@@ -23,7 +23,8 @@ public class IOVehicle {
 		Vehicle vehicle = new Vehicle();
 		IOUtils.print("Création d'un véhicule");
 		vehicle.setConstructeur(IOUtils.readString("Entrez le nom du contructeur : ", true));
-		vehicle.setNb_places(IOUtils.readInt("Entrez le nom du contructeur : "));
+		vehicle.setModele(IOUtils.readString("Entrez le nom du modele : ", true));
+		vehicle.setNb_places(IOUtils.readInt("Entrez le nombre de places : "));
 		try {
 			long ID = new VehicleService(new VehicleDao()).create(vehicle);
 			IOUtils.print("Le véhicule [" + ID + "] a été créé");

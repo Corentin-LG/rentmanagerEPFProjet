@@ -3,6 +3,8 @@ package com.epf.rentmanager.main;
 
 import com.epf.rentmanager.config.AppConfiguration;
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.VehicleDao;
+import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
@@ -26,8 +28,14 @@ public class Tests {
             ClientDao cld1 = new ClientDao();
             ClientService clS1 = new ClientService(cld1);
             System.out.println(clS1.findAll());
+
         } catch (ServiceException e) {
             e.printStackTrace();
+        }
+        try {
+            System.out.println(new VehicleService((VehicleDao) new VehicleDao().findAll()));
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
 
 //        Client cl = new Client();
