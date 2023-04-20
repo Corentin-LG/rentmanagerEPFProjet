@@ -1,10 +1,11 @@
 package com.epf.rentmanager.ui.servlet;
 
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
+import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.ServletException;
@@ -14,39 +15,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
-@WebServlet("/users/create")
-@Component
-public class UserCreateServlet extends HttpServlet {
+@WebServlet("/rents/create")
+public class RentCreateServlet extends HttpServlet  {
+
     private static final long serialVersionUID = 1L;
     @Autowired
     ClientService clientService;
+    @Autowired
+    VehicleService vehicleService;
+    @Autowired
+    ReservationService reservationService;
+
     @Override
     public void init() throws ServletException {
         super.init();
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("clients", this.clientService.findAll());
+            request.setAttribute("vehicles", this.vehicleService.findAll());
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Client client = new Client();
-        client.setNom(request.getParameter("last_name"));
-        client.setPrenom(request.getParameter("first_name"));
-        client.setNaissance(LocalDate.parse(request.getParameter("date_naissance")));
-        client.setEmail(request.getParameter("email"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Reservation rent = new Reservation();
         try {
-            clientService.create(client);
+            rent.setVehicle(vehicleService.findById(Integer.parseInt(request.getParameter("car"))));
+            rent.setClient(clientService.findById(Integer.parseInt(request.getParameter("client"))));
+            rent.setFin(LocalDate.parse(request.getParameter("begin")));
+            rent.setDebut(LocalDate.parse(request.getParameter("end")));
+            reservationService.create(rent);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/rentmanager/users");
+        response.sendRedirect("/rentmanager/rents");
     }
+
 }
