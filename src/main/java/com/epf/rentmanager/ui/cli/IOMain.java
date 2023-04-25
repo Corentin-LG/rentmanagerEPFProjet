@@ -15,7 +15,7 @@ public class IOMain {
 
 	public static void afficherMenu() {
 		IOUtils.print("Que voulez-vous faire ?");
-		IOUtils.print(" [1] Afficher les enregistrements \n [2] Créer des enregistrements \n[3] Quitter le programme");
+		IOUtils.print(" [1] Afficher les enregistrements \n [2] Créer des enregistrements \n [3] Quitter le programme");
 
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
@@ -30,7 +30,7 @@ public class IOMain {
 	}
 
 	public static void afficherListOptions() {
-		IOUtils.print("[1] Lister les clients \n [2] Lister les véhicules \n [3] Lister les réservations \n [4] Quitter le programme");
+		IOUtils.print(" [1] Lister les clients \n [2] Lister les véhicules \n [3] Lister les réservations \n [4] Quitter le programme");
 
 		int choix = IOUtils.readInt("Entrez votre choix : ");
 		switch (choix) {
