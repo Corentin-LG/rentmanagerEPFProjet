@@ -10,6 +10,7 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import com.epf.rentmanager.tests.UserServiceTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -32,11 +33,11 @@ public class Tests {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        try {
-            System.out.println(new VehicleService((VehicleDao) new VehicleDao().findAll()));
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            System.out.println(new VehicleService((VehicleDao) new VehicleDao().findAll()));
+//        } catch (DaoException e) {
+//            throw new RuntimeException(e);
+//        }
 
 //        Client cl = new Client();
 //        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
