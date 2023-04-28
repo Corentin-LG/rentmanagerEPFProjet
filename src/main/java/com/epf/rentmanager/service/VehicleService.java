@@ -54,5 +54,13 @@ public class VehicleService {
             throw new ServiceException(e);
         }
     }
+    public void edit(long id, Vehicle newVehicle) throws ServiceException {
+        try {
+            vehicleDao.update(id, newVehicle);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
 }
 

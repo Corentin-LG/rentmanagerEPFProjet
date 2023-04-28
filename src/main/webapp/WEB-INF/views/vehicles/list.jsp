@@ -37,18 +37,18 @@
                                 <tr>
 
                                 <c:forEach items="${vehicles}" var="vehicle">
-                                    <td>${vehicle.id}.</td>
-                                    <td>${vehicle.constructeur}</td>
-                                    <td>${vehicle.modele}</td>
-                                    <td>${vehicle.nb_places}</td>
+                                    <td>${vehicle.getId()}.</td>
+                                    <td>${vehicle.getConstructeur()}</td>
+                                    <td>${vehicle.getModele()}</td>
+                                    <td>${vehicle.getNb_places()}</td>
                                     <td>
-                                        <a class="btn btn-primary disabled" href="car-detail.html">
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/cars/details?id=${vehicle.getId()}">
                                             <i class="fa fa-play"></i>
                                         </a>
-                                        <a class="btn btn-success disabled" href="#">
+                                        <a class="btn btn-success" href="${pageContext.request.contextPath}/cars/edit?id=${vehicle.getId()}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger disabled" href="#">
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/cars/delete?id=${vehicle.getId()}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
@@ -24,38 +25,30 @@
                 <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box">
-                        <!-- form start -->
-                        <!-- Le  type de methode http qui sera appel� lors de action submit du formulaire -->
-                        <!-- est d�crit an l'attribut "method" de la balise forme -->
-                        <!-- action indique � quel "cible" sera envoyr la requ�te, ici notre Servlet qui sera bind sur -->
-                        <!-- /vehicles/create -->
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="manufacturer" class="col-sm-2 control-label">Marque</label>
-									<!-- de l'attribut "name" de l'input -->
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Marque" required>
+                                        <input type="text" class="form-control" required id="constructeur" name="constructeur" placeholder="Marque" value="${vehicle.getConstructeur()}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="modele" class="col-sm-2 control-label">Modele</label>
-
+                                    <label for="modele" class="col-sm-2 control-label">Modèle</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" required>
+                                        <input type="text" class="form-control" required id="modele" name="modele" placeholder="Modèle" value="${vehicle.getModele()}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
-
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="seats" name="seats" placeholder="Nombre de places" required>
+                                        <input type="number" class="form-control" required id="places" name="places" placeholder="Nombre de places" value="${vehicle.getNb_places()}">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button type="submit" class="btn btn-info pull-right">Modifier le véhicule</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
