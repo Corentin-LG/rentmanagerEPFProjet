@@ -27,10 +27,17 @@ Des tests sont déjà disponibles dans `UserServiceTest`
 
 ## Idées d'amélioration
 
-- [ ] Ajouter ou `finaliser` les contraintes :
-- une voiture ne peut pas être réservée 2 fois le même jour
-- une voiture ne peux pas être réservée plus de 7 jours de suite par le même
+### Ajouter ou `finaliser` les contraintes :
+- [ ] une voiture ne peut pas être réservée 2 fois le même jour
+- [ ] une voiture ne peux pas être réservée plus de 7 jours de suite par le même
   utilisateur (`par edition seulement encore possible`)
-- une voiture ne peut pas être réservé 30 jours de suite sans pause
-- si un client ou un véhicule est supprimé, alors il faut supprimer les
+- [ ] une voiture ne peut pas être réservé 30 jours de suite sans pause
+- [ ] si un client ou un véhicule est supprimé, alors il faut supprimer les
   réservations associées
+
+### Ajout nouvelles fonctionnalités :
+- [ ] Mettre des pop-up lorsque les conditions de création ou d'édition ne sont pas remplies
+- [ ] Lien hypertexte généralisés sur les IDs, les noms pour aller dans les listes
+- [ ] Un lien hypertext sur une adresse mail permet de préremplir un mail
+- [ ] Proposer des alertes lorsque la durée de location arrive à son terme
+- [ ] Proposer des moyens de paiement
