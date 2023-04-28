@@ -1,8 +1,10 @@
 package com.epf.rentmanager.service;
 
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Repository;
 
@@ -78,6 +80,10 @@ public class VehicleService {
 
     public long delete(Vehicle vehicle) throws ServiceException {
         try {
+            ReservationService rs = new ReservationService(new ReservationDao());
+            for (Reservation rent : rs.findResaByVehicleId(vehicle.getId())) {
+                rs.delete(rent);
+            }
             return vehicleDao.delete(vehicle);
         } catch (DaoException e) {
             e.printStackTrace();

@@ -3,6 +3,7 @@ package com.epf.rentmanager.service;
 // regroupe les contraintes métiers du genres : un client ne doit pas avoir moins de 18 ans
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.ClientException;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
@@ -104,6 +105,10 @@ public class ClientService {
 
     public long delete(Client client) throws ServiceException {
         try {
+            ReservationService rs = new ReservationService(new ReservationDao());
+            for (Reservation rent : rs.findResaByClientId(client.getId())) {
+                rs.delete(rent);
+            }
             return clientDao.delete(client);
         } catch (DaoException e) {
             e.printStackTrace();

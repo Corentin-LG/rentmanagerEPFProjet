@@ -32,8 +32,6 @@ Des tests sont déjà disponibles dans `UserServiceTest`
 - [ ] une voiture ne peux pas être réservée plus de 7 jours de suite par le même
   utilisateur (`par edition seulement encore possible`)
 - [ ] une voiture ne peut pas être réservé 30 jours de suite sans pause
-- [ ] si un client ou un véhicule est supprimé, alors il faut supprimer les
-  réservations associées
 
 ### Ajout nouvelles fonctionnalités :
 - [ ] Mettre des pop-up lorsque les conditions de création ou d'édition ne sont pas remplies
