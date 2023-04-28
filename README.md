@@ -30,7 +30,7 @@ Lancer `UIMain`
 
 ## Problème rare
 Lors du développement, le dossier `target` peut exceptionnellement engendrer des problèmes.
-Il faudra le supprimer et le recréer en recommençant à [l'étape 1](#1.-enlever-les-anciennes-bases-de-données-présentes).
+Il faudra le supprimer et le recréer en recommençant à [l'étape 1](#1-enlever-les-anciennes-bases-de-données-présentes).
 
 ## Idées d'amélioration
 
