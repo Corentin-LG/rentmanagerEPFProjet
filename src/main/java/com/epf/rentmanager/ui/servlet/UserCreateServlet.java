@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 @WebServlet("/users/create")
 @Component
@@ -22,11 +21,13 @@ public class UserCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Autowired
     ClientService clientService;
+
     @Override
     public void init() throws ServletException {
         super.init();
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("clients", this.clientService.findAll());
@@ -36,7 +37,8 @@ public class UserCreateServlet extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         Client client = new Client();
         client.setNom(request.getParameter("last_name"));
         client.setPrenom(request.getParameter("first_name"));

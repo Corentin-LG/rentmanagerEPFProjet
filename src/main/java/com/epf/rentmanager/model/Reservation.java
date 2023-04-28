@@ -64,8 +64,7 @@ public class Reservation {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Reservation)) return false;
-        Reservation that = (Reservation) o;
+        if (!(o instanceof Reservation that)) return false;
         return id == that.id && client == that.client && vehicle == that.vehicle && Objects.equals(debut, that.debut) && Objects.equals(fin, that.fin);
     }
 

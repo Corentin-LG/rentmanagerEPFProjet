@@ -63,8 +63,7 @@ public class Vehicle {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Vehicle)) return false;
-        Vehicle vehicle = (Vehicle) o;
+        if (!(o instanceof Vehicle vehicle)) return false;
         return id == vehicle.id && nb_places == vehicle.nb_places && Objects.equals(constructeur, vehicle.constructeur) && Objects.equals(modele, vehicle.modele);
     }
 

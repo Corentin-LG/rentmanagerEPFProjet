@@ -40,7 +40,7 @@ public class UserServiceTest {
     @Test
     public void find_by_id_must_work() throws ServiceException {
         // setup
-        Client ExpectedClient = new Client(1515,"John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        Client ExpectedClient = new Client(1515, "John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         when(this.clientService.findById(1515)).thenReturn(ExpectedClient);
 
@@ -61,7 +61,7 @@ public class UserServiceTest {
         ClientDao clientDao = mock(ClientDao.class);
         when(clientDao.countSameEmail(anyString())).thenReturn(0);
         ClientService service = new ClientService(clientDao);
-        Client client = new Client(1515,"John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        Client client = new Client(1515, "John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         // Act
         service.create(client);
@@ -74,7 +74,7 @@ public class UserServiceTest {
     public void create_client_with_existing_email() throws ServiceException {
         // given
         ClientService clientService = new ClientService(clientDao);
-        Client client = new Client(1515,"John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        Client client = new Client(1515, "John", "Doe", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         // when
         try {
@@ -91,14 +91,13 @@ public class UserServiceTest {
     public void create_client_with_short_first_name() throws ServiceException {
         // given
         ClientService clientService = new ClientService(clientDao);
-        Client client = new Client(1515,"John", "D", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        Client client = new Client(1515, "John", "D", "john.doe@example.com", LocalDate.parse("2000-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         // when
         clientService.create(client);
 
         // then - expected ServiceException
     }
-
 
 
 }

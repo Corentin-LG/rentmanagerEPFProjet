@@ -69,8 +69,7 @@ public class Client {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-        Client client = (Client) o;
+        if (!(o instanceof Client client)) return false;
         return id == client.id && Objects.equals(nom, client.nom) && Objects.equals(prenom, client.prenom) && Objects.equals(email, client.email) && Objects.equals(naissance, client.naissance);
     }
 

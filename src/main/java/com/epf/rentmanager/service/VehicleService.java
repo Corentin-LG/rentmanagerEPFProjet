@@ -5,14 +5,17 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
+
 @Repository
 public class VehicleService {
     private final VehicleDao vehicleDao;
 
-    public VehicleService(VehicleDao vehicleDao){
+    public VehicleService(VehicleDao vehicleDao) {
         this.vehicleDao = vehicleDao;
     }
+
     public long create(Vehicle vehicle) throws ServiceException {
         try {
             if (vehicle.getConstructeur().isBlank()) {
@@ -47,13 +50,14 @@ public class VehicleService {
     }
 
     public int count() throws ServiceException {
-        try{
+        try {
             return vehicleDao.count();
-        } catch (DaoException e){
+        } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);
         }
     }
+
     public void edit(long id, Vehicle newVehicle) throws ServiceException {
         try {
             vehicleDao.update(id, newVehicle);

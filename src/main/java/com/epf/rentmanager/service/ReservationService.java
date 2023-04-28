@@ -1,8 +1,6 @@
 package com.epf.rentmanager.service;
 
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
-import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
@@ -12,12 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class ReservationService {
 
     private final ReservationDao reservationDao;
 
-    public ReservationService(ReservationDao reservationDao){
+    public ReservationService(ReservationDao reservationDao) {
         this.reservationDao = reservationDao;
     }
 
@@ -92,9 +91,11 @@ public class ReservationService {
             throw new ServiceException();
         }
     }
+
     public int count() throws ServiceException {
         return reservationDao.count();
     }
+
     public void edit(long id, Reservation newRent) throws ServiceException {
         try {
             reservationDao.update(id, newRent);

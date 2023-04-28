@@ -24,10 +24,10 @@
                             <p>${vehicle.getNb_places()} places</p>
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Réservation·s</b> <a class="pull-right">${allReservations.size()}</a>
+                                    <b>R&eacute;servation(s)</b> <a class="pull-right">${allReservations.size()}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Conducteur·s</b> <a class="pull-right">${allClients.size()}</a>
+                                    <b>Conducteur(s)</b> <a class="pull-right">${allClients.size()}</a>
                                 </li>
                             </ul>
                         </div>
@@ -39,8 +39,8 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#rents" data-toggle="tab">Réservations</a></li>
-                            <li><a href="#drivers" data-toggle="tab">Conducteurs</a></li>
+                            <li class="active"><a href="#rents" data-toggle="tab">R&eacute;servation(s)</a></li>
+                            <li><a href="#drivers" data-toggle="tab">Conducteur(s)</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="rents">
@@ -49,13 +49,13 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Client</th>
-                                            <th>Date de debut</th>
+                                            <th>Date de d&eacute;but</th>
                                             <th>Date de fin</th>
                                         </tr>
                                         <c:forEach items="${allReservations}" var="reservation">
                                         <tr>
                                             <td>${reservation.getId()}</td>
-                                            <td>${reservation.getClient()}</td>
+                                            <td>[${reservation.getClient().getId()}] ${reservation.getClient().getNom()} ${reservation.getClient().getPrenom()}</td>
                                             <td>${reservation.getDebut()}</td>
                                             <td>${reservation.getFin()}</td>
                                         </tr>
@@ -71,9 +71,9 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>date de naissance</th>
-                                            <th>Courriel</th>
+                                            <th>Pr&eacute;nom</th>
+                                            <th>Date de naissance</th>
+                                            <th>Email</th>
                                         </tr>
                                         <c:forEach items="${allClients}" var="client">
                                         <tr>

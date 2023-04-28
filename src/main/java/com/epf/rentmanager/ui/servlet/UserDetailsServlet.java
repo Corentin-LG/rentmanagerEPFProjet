@@ -3,7 +3,6 @@ package com.epf.rentmanager.ui.servlet;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
-import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/users/details")
-public class UserDetails extends HttpServlet {
+public class UserDetailsServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
     @Autowired

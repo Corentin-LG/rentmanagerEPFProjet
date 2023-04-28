@@ -21,6 +21,7 @@ public class ClientDao {
     private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS count FROM Client;";
     private static final String COUNT_SAME_EMAIL_QUERY = "SELECT COUNT(email) AS count FROM Client WHERE email=?;";
     private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom=?, prenom=?, email=?, naissance=? WHERE id=?;";
+
     public ClientDao() {
     }
 
@@ -149,6 +150,7 @@ public class ClientDao {
         }
         return nbClients;
     }
+
     public void update(long id, Client newClient) throws DaoException {
         try (
                 Connection connection = ConnectionManager.getConnection();

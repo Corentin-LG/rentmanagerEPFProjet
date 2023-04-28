@@ -1,7 +1,6 @@
 package com.epf.rentmanager.ui.servlet;
 
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +35,7 @@ public class VehicleDetailsServlet extends HttpServlet {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        this.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/vehicles/details.jsp")
-                .forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/details.jsp").forward(request, response);
     }
 }
 

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet("/rents/edit")
-public class RentEdit extends HttpServlet {
+public class RentEditServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
     @Autowired
@@ -46,6 +46,7 @@ public class RentEdit extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         long rentID = Long.parseLong(request.getParameter("id"));
         try {
             Reservation reservation = new Reservation(

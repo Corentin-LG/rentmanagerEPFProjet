@@ -15,14 +15,16 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet("/users/edit")
-public class UserEdit extends HttpServlet {
+public class UserEditServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
+
     @Override
     public void init() throws ServletException {
         super.init();
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long clientId = Long.parseLong(request.getParameter("id"));
         try {
@@ -36,6 +38,7 @@ public class UserEdit extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         long clientId = Long.parseLong(request.getParameter("id"));
         Client client = new Client(clientId, request.getParameter("nom"),
                 request.getParameter("prenom"),

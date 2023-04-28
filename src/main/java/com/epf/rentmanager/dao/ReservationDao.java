@@ -6,14 +6,13 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
-import com.epf.rentmanager.service.ClientService;
-import com.epf.rentmanager.service.VehicleService;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class ReservationDao {
 
@@ -30,6 +29,11 @@ public class ReservationDao {
     private ClientDao clientDao;
     private VehicleDao vehicleDao;
 
+    public ReservationDao() {
+        clientDao = new ClientDao();
+        vehicleDao = new VehicleDao();
+    }
+
     public ClientDao getClientDao() {
         return clientDao;
     }
@@ -45,12 +49,6 @@ public class ReservationDao {
     public void setVehicleDao(VehicleDao vehicleDao) {
         this.vehicleDao = vehicleDao;
     }
-
-    public ReservationDao() {
-        clientDao = new ClientDao();
-        vehicleDao = new VehicleDao();
-    }
-
 
     public long create(Reservation reservation) throws DaoException {
         long ID = 0;
@@ -200,7 +198,7 @@ public class ReservationDao {
     public void update(long id, Reservation newRent) throws DaoException {
         try (
                 Connection connection = ConnectionManager.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RESERVATION_QUERY);
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RESERVATION_QUERY)
         ) {
             preparedStatement.setLong(1, newRent.getClient().getId());
             preparedStatement.setLong(2, newRent.getVehicle().getId());
@@ -240,7 +238,7 @@ public class ReservationDao {
         List<Client> rentedVehicles = new ArrayList<>();
         try (
                 Connection connection = ConnectionManager.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_CLIENTS_PER_VEHICLE);
+                PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_CLIENTS_PER_VEHICLE)
         ) {
             preparedStatement.setLong(1, vehicleId);
             ResultSet rs = preparedStatement.executeQuery();

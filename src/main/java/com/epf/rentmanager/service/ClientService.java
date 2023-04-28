@@ -11,15 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientService {
 
     private final ClientDao clientDao;
-    public ClientService(ClientDao clientDao){
+
+    public ClientService(ClientDao clientDao) {
         this.clientDao = clientDao;
     }
 
@@ -31,7 +30,7 @@ public class ClientService {
             if (client.getNom().isBlank()) {
                 throw new ServiceException("Il n'y a pas de nom");
             }
-            if (client.getPrenom().length() <3 || client.getNom().length()<3){
+            if (client.getPrenom().length() < 3 || client.getNom().length() < 3) {
                 throw new ServiceException("Votre nom ou votre prénom est trop court (<3)");
             }
 
@@ -40,11 +39,11 @@ public class ClientService {
             Period diff = Period.between(birthDate, currentDate);
             int age = diff.getYears();
 
-            if ( age < 18) {
+            if (age < 18) {
                 throw new ClientException("Vous n'êtes pas majeur (+18)");
             }
 
-            if (countSameEmail(client.getEmail())>0){
+            if (countSameEmail(client.getEmail()) > 0) {
                 throw new ClientException("Cet email existe déjà");
             }
 

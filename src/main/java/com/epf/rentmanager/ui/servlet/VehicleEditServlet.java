@@ -17,6 +17,7 @@ import java.io.IOException;
 public class VehicleEditServlet extends HttpServlet {
     @Autowired
     VehicleService vehicleService;
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -37,6 +38,7 @@ public class VehicleEditServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         long vehicleId = Long.parseLong(request.getParameter("id"));
         Vehicle vehicle = new Vehicle(vehicleId, request.getParameter("constructeur"),
                 request.getParameter("modele"),

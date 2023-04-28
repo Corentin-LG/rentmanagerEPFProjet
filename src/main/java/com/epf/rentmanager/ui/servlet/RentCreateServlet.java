@@ -44,6 +44,7 @@ public class RentCreateServlet extends HttpServlet  {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         Reservation rent = new Reservation();
         try {
             rent.setVehicle(vehicleService.findById(Integer.parseInt(request.getParameter("car"))));
