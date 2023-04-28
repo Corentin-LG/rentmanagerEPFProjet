@@ -47,7 +47,6 @@ public class RentEdit extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long rentID = Long.parseLong(request.getParameter("id"));
-        request.setCharacterEncoding("UTF-8");
         try {
             Reservation reservation = new Reservation(
                     rentID,

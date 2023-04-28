@@ -6,6 +6,7 @@ import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -52,18 +53,12 @@ public class ReservationService {
         }
     }
 
-    public List<Reservation> findResaByVehicleId(long id) throws ServiceException {
+    public List<Vehicle> findAllVehiclesPerClientId(long clientId) throws ServiceException {
         try {
-            List<Reservation> reservation = new ArrayList<Reservation>();
-            reservation = reservationDao.findResaByVehicleId(id);
-            for (Reservation r : reservation) {
-                r.setVehicle(reservationDao.getVehicleDao().findById(r.getVehicle().getId()));
-                r.setClient(reservationDao.getClientDao().findById(r.getClient().getId()));
-            }
-            return reservation;
+            return reservationDao.findAllVehiclesPerClientId(clientId);
         } catch (DaoException e) {
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 

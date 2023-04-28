@@ -25,7 +25,7 @@ public class ReservationDao {
     private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
     private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS count FROM Reservation;";
     private static final String FIND_RESERVATION_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
-
+    private static final String FIND_VEHICLES_RENTED_BY_CLIENT = "SELECT Vehicle.id, constructeur, modele, nb_places FROM Reservation INNER JOIN Vehicle ON Reservation.vehicle_id = Vehicle.id WHERE Reservation.client_id=?;";
     private ClientDao clientDao;
     private VehicleDao vehicleDao;
 
@@ -199,7 +199,7 @@ public class ReservationDao {
     public void update(long id, Reservation newRent) throws DaoException {
         try (
                 Connection connection = ConnectionManager.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RESERVATION_QUERY)
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RESERVATION_QUERY);
         ) {
             preparedStatement.setLong(1, newRent.getClient().getId());
             preparedStatement.setLong(2, newRent.getVehicle().getId());
@@ -211,5 +211,27 @@ public class ReservationDao {
             e.printStackTrace();
             throw new DaoException(e);
         }
+    }
+
+    public List<Vehicle> findAllVehiclesPerClientId(long clientId) throws DaoException {
+        List<Vehicle> allVehicles = new ArrayList<>();
+        try (
+                Connection connection = ConnectionManager.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(FIND_VEHICLES_RENTED_BY_CLIENT)
+        ) {
+            preparedStatement.setLong(1, clientId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                allVehicles.add(new Vehicle(rs.getLong("Vehicle.id"),
+                        rs.getString("constructeur"),
+                        rs.getString("modele"),
+                        rs.getShort("nb_places")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return allVehicles;
     }
 }

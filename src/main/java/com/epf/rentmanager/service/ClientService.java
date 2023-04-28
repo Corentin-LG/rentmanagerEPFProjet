@@ -92,4 +92,13 @@ public class ClientService {
             throw new ServiceException();
         }
     }
+
+    public void edit(long id, Client newClient) throws ServiceException {
+        try {
+            clientDao.update(id, newClient);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
 }

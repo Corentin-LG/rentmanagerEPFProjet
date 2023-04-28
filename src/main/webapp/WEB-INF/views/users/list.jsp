@@ -36,19 +36,19 @@
                                 </tr>
                                 <c:forEach items="${clients}" var="client">
                                 <tr>
-                                    <td>${client.id}</td>
-                                    <td>${client.nom}</td>
-                                    <td>${client.prenom}</td>
-                                    <td>${client.email}</td>
-                                    <td>${client.naissance}</td>
+                                    <td>${client.getId()}</td>
+                                    <td>${client.getNom()}</td>
+                                    <td>${client.getPrenom()}</td>
+                                    <td>${client.getEmail()}</td>
+                                    <td>${client.getNaissance()}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${client.id}<">
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${client.getId()}">
                                         <i class="fa fa-play"></i>
                                         </a>
-                                        <a class="btn btn-success disabled" href="#">
+                                        <a class="btn btn-success" href="${pageContext.request.contextPath}/users/edit?id=${client.getId()}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger disabled" href="#">
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/users/delete?id=${client.getId()}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
