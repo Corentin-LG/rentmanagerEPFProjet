@@ -9,7 +9,7 @@ import com.epf.rentmanager.utils.IOUtils;
 import java.time.LocalDate;
 import java.util.List;
 
-public class IOReservation {
+public class UIReservation {
     public static void listReservations() {
         try {
             for (Reservation reservation : new ReservationService(new ReservationDao()).findAll()) {
@@ -24,8 +24,8 @@ public class IOReservation {
         Reservation reservation = new Reservation();
         IOUtils.print("Création d'une réservation");
         try {
-            reservation.setClient(IOClient.selectClient());
-            reservation.setVehicle(IOVehicle.selectVehicle());
+            reservation.setClient(UIClient.selectClient());
+            reservation.setVehicle(UIVehicle.selectVehicle());
             reservation.setDebut(IOUtils.readDate("Entrez une date de début de réservation :", true));
             LocalDate dateFin;
             do {

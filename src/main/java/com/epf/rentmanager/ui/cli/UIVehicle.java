@@ -8,7 +8,7 @@ import com.epf.rentmanager.utils.IOUtils;
 
 import java.util.List;
 
-public class IOVehicle {
+public class UIVehicle {
     public static void listVehicles() {
         try {
             for (Vehicle vehicle : new VehicleService(new VehicleDao()).findAll()) {

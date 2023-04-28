@@ -3,7 +3,7 @@ package com.epf.rentmanager.ui.cli;
 import com.epf.rentmanager.utils.IOUtils;
 
 
-public class IOMain {
+public class UIMain {
     private static boolean fin = false;
 
     public static void main(String[] args) {
@@ -34,9 +34,9 @@ public class IOMain {
 
         int choix = IOUtils.readInt("Entrez votre choix : ");
         switch (choix) {
-            case 1 -> IOClient.listClients();
-            case 2 -> IOVehicle.listVehicles();
-            case 3 -> IOReservation.listReservations();
+            case 1 -> UIClient.listClients();
+            case 2 -> UIVehicle.listVehicles();
+            case 3 -> UIReservation.listReservations();
             case 4 -> {
                 IOUtils.print("Au revoir !");
                 fin = true;
@@ -49,9 +49,9 @@ public class IOMain {
         IOUtils.print(" [1] Créer un client \n [2] Créer un véhicule \n [3] Créer une réservation \n [4] Quitter le programme");
         int choix = IOUtils.readInt("Entrez votre choix : ");
         switch (choix) {
-            case 1 -> IOClient.createClient();
-            case 2 -> IOVehicle.createVehicle();
-            case 3 -> IOReservation.createReservation();
+            case 1 -> UIClient.createClient();
+            case 2 -> UIVehicle.createVehicle();
+            case 3 -> UIReservation.createReservation();
             case 4 -> {
                 IOUtils.print("Au revoir !");
                 fin = true;

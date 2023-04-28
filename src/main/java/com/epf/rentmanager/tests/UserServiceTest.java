@@ -84,7 +84,7 @@ public class UserServiceTest {
         }
         clientService.create(client);
 
-        // then - expected ServiceException
+        // then - expected ClientException
     }
 
     @Test(expected = ServiceException.class)

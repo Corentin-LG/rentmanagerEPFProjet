@@ -8,7 +8,7 @@ import com.epf.rentmanager.utils.IOUtils;
 
 import java.util.List;
 
-public class IOClient {
+public class UIClient {
     public static void listClients() {
         try {
             for (Client client : new ClientService(new ClientDao()).findAll()) {
