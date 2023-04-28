@@ -8,6 +8,8 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,14 @@ public class ReservationService {
 
     public long create(Reservation reservation) throws ServiceException {
         try {
+            LocalDate beginDate = reservation.getDebut();
+            LocalDate endDate = reservation.getFin();
+            Period diff = Period.between(beginDate, endDate);
+
+            if (diff.getDays() > 7 || diff.getMonths() > 0 || diff.getYears() > 0) {
+                throw new ServiceException("Une voiture ne peut pas être louée plus de 7 jours d'affilés par un même Client");
+            }
+
             return reservationDao.create(reservation);
         } catch (DaoException e) {
             e.printStackTrace();
@@ -98,6 +108,13 @@ public class ReservationService {
 
     public void edit(long id, Reservation newRent) throws ServiceException {
         try {
+            LocalDate beginDate = newRent.getDebut();
+            LocalDate endDate = newRent.getFin();
+            Period diff = Period.between(beginDate, endDate);
+
+            if (diff.getDays() > 7) {
+                throw new ServiceException("Une voiture ne peut pas être louée plus de 7 jours d'affilés par un même Client");
+            }
             reservationDao.update(id, newRent);
         } catch (DaoException e) {
             e.printStackTrace();
