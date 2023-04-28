@@ -14,7 +14,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Réservations
+                R&eacute;servations
             </h1>
         </section>
 
@@ -66,7 +66,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Modifier la réservation</button>
+                                <button type="submit" class="btn btn-info pull-right">Mise &agrave; jour de la r&eacute;servation</button>
                             </div>
                         </form>
                     </div>

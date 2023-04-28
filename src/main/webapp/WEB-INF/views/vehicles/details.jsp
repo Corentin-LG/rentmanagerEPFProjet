@@ -47,7 +47,7 @@
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
+                                            <th style="width: 10px">ID</th>
                                             <th>Client</th>
                                             <th>Date de d&eacute;but</th>
                                             <th>Date de fin</th>
@@ -69,7 +69,7 @@
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
+                                            <th style="width: 10px">ID</th>
                                             <th>Nom</th>
                                             <th>Pr&eacute;nom</th>
                                             <th>Date de naissance</th>

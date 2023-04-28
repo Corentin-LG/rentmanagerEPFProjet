@@ -55,7 +55,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Mettre à jour le client</button>
+                                <button type="submit" class="btn btn-info pull-right">Mise à jour du client</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>

@@ -19,14 +19,14 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <h3 class="profile-username text-center">${client.getNom()} ${client.getPrenom()}</h3>
-                            <p>Né le ${client.getNaissance()}</p>
+                            <p>N&eacute; le ${client.getNaissance()}</p>
                             <p>Email : ${client.getEmail()}</p>
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Réservation·s</b> <a class="pull-right">${allReservations.size()}</a>
+                                    <b>R&eacute;servation(s)</b> <a class="pull-right">${allReservations.size()}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture·s</b> <a class="pull-right">${allVehicles.size()}</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${allVehicles.size()}</a>
                                 </li>
                             </ul>
                         </div>
@@ -38,7 +38,7 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#rents" data-toggle="tab">Réservations</a></li>
+                            <li class="active"><a href="#rents" data-toggle="tab">R&eacute;servation(s)</a></li>
                             <li><a href="#cars" data-toggle="tab">Voitures</a></li>
                         </ul>
                         <div class="tab-content">
@@ -46,15 +46,15 @@
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
+                                            <th style="width: 10px">ID</th>
                                             <th>Voiture</th>
-                                            <th>Date de debut</th>
+                                            <th>Date de d&eacute;but</th>
                                             <th>Date de fin</th>
                                         </tr>
                                         <c:forEach items="${allReservations}" var="reservation">
                                         <tr>
                                             <td>${reservation.getId()}</td>
-                                            <td>${reservation.getVehicle()}</td>
+                                            <td>${reservation.getVehicle().getConstructeur()} ${reservation.getVehicle().getModele()}</td>
                                             <td>${reservation.getDebut()}</td>
                                             <td>${reservation.getFin()}</td>
                                         </tr>
@@ -68,16 +68,16 @@
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
+                                            <th style="width: 10px">ID</th>
                                             <th>Constructeur</th>
-                                            <th>Modèle</th>
+                                            <th>Mod&egrave;le</th>
                                             <th>Nombre de places</th>
                                         </tr>
                                         <c:forEach items="${allVehicles}" var="vehicle">
                                         <tr>
                                             <td>${vehicle.getId()}.</td>
-                                            <td>${vehicle.getModele()}</td>
                                             <td>${vehicle.getConstructeur()}</td>
+                                            <td>${vehicle.getModele()}</td>
                                             <td>${vehicle.getNb_places()}</td>
                                         </tr>
                                         </c:forEach>

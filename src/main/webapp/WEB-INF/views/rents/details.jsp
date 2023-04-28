@@ -25,9 +25,9 @@
                                 <dd>${reservation.getId()}</dd>
                                 <dt>Client</dt>
                                 <dd>${reservation.getClient().getNom()} ${reservation.getClient().getPrenom()}</dd>
-                                <dt>Véhicule</dt>
+                                <dt>V&eacute;hicule</dt>
                                 <dd>${reservation.getVehicle().getModele()} ${reservation.getVehicle().getConstructeur()}</dd>
-                                <dt>Début</dt>
+                                <dt>D&eacute;but</dt>
                                 <dd>${reservation.getDebut()}</dd>
                                 <dt>Fin</dt>
                                 <dd>${reservation.getFin()}</dd>

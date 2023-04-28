@@ -48,7 +48,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Modifier le véhicule</button>
+                                <button type="submit" class="btn btn-info pull-right">Mise à jour du véhicule</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>

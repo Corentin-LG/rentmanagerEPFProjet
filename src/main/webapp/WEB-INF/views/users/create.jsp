@@ -35,14 +35,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="first_name" class="col-sm-2 control-label">Prenom</label>
+                                    <label for="first_name" class="col-sm-2 control-label">Pr&eacute;nom</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Pr&eacute;nom">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date_naissance" class="col-sm-2 control-label">Email</label>
+                                    <label for="date_naissance" class="col-sm-2 control-label">Date de naissance</label>
 
                                     <div class="col-sm-10">
                                         <input type="date_naissance" class="form-control" id="date_naissance" name="date_naissance" placeholder="Date de naissance [aaaa-mm-jj]">

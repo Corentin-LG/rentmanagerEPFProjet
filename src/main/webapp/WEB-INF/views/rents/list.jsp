@@ -14,7 +14,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Reservations
+                R&eacute;servations
                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/rents/create">Ajouter</a>
             </h1>
         </section>
@@ -30,7 +30,7 @@
                                     <th>ID</th>
                                     <th>Voiture</th>
                                     <th>Client</th>
-                                    <th>Debut</th>
+                                    <th>D&eacute;but</th>
                                     <th>Fin</th>
                                     <th>Action</th>
                                 </tr>
@@ -38,8 +38,8 @@
 
                                 <c:forEach items="${reservations}" var="reservation">
                                     <td>${reservation.getId()}</td>
-                                    <td>${reservation.getVehicle()}.</td>
-                                    <td>${reservation.getClient()}</td>
+                                    <td>[${reservation.getVehicle().getId()}] ${reservation.getVehicle().getConstructeur()} ${reservation.getVehicle().getModele()} (${reservation.getVehicle().getNb_places()} places)</td>
+                                    <td>[${reservation.getClient().getId()}] ${reservation.getClient().getNom()} ${reservation.getClient().getPrenom()}</td>
                                     <td>${reservation.getDebut()}</td>
                                     <td>${reservation.getFin()}</td>
                                     <td>

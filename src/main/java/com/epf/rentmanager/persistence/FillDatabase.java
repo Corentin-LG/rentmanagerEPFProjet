@@ -47,8 +47,8 @@ public class FillDatabase {
 //            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Seat', 4)");
 //            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Nissan', 4)");
 
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Corsa', 'Opel', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Kashai', 'Nissan', 4)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Opel', 'Corsa',4)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Nissan', 'Kashai', 4)");
 
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Dupont', 'Jean', 'jean.dupont@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Morin', 'Sabrina', 'sabrina.morin@email.com', '1988-01-22')");
