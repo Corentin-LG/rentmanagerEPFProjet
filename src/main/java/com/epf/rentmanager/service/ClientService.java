@@ -7,6 +7,7 @@ import com.epf.rentmanager.exception.ClientException;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -95,6 +96,15 @@ public class ClientService {
     public void edit(long id, Client newClient) throws ServiceException {
         try {
             clientDao.update(id, newClient);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
+
+    public long delete(Client client) throws ServiceException {
+        try {
+            return clientDao.delete(client);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException(e);

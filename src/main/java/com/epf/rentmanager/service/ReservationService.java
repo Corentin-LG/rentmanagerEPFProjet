@@ -113,4 +113,13 @@ public class ReservationService {
             throw new ServiceException(e);
         }
     }
+
+    public long delete(Reservation reservation) throws ServiceException {
+        try {
+            return reservationDao.delete(reservation);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
 }

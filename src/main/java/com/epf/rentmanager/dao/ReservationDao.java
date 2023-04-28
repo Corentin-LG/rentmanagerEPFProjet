@@ -73,8 +73,19 @@ public class ReservationDao {
         return ID;
     }
 
-    public long delete(Reservation reservation) throws DaoException {
-        return 0;
+    public long delete(Reservation rent) throws DaoException {
+        long reservationId = rent.getId();
+        try (
+                Connection connection = ConnectionManager.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(DELETE_RESERVATION_QUERY)
+        ) {
+            preparedStatement.setLong(1, reservationId);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(e);
+        }
+        return reservationId;
     }
 
     public List<Reservation> findResaByClientId(long clientId) throws DaoException {

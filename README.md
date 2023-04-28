@@ -27,7 +27,7 @@ Des tests sont déjà disponibles dans `UserServiceTest`
 
 ## Idées d'amélioration
 
-- [ ] Fonctionnalité delete non opérationnelle
+- [ ] Fonctionnalité delete Client ou Véhicule qui supprime les Locations correspondantes
 - [ ] Ajouter les contraintes :
 - une voiture ne peut pas être réservée 2 fois le même jour
 - une voiture ne peux pas être réservée plus de 7 jours de suite par le même
@@ -36,4 +36,4 @@ Des tests sont déjà disponibles dans `UserServiceTest`
 - si un client ou un véhicule est supprimé, alors il faut supprimer les
   réservations associées
 - une voiture doit avoir un modèle et un constructeur, son nombre de place doit
-  être compris entre 2 et 
+  être compris entre 2 et 9
