@@ -47,7 +47,7 @@ public class RentCreateServlet extends HttpServlet  {
         request.setCharacterEncoding("UTF-8");
         Reservation rent = new Reservation();
         try {
-            rent.setVehicle(vehicleService.findById(Integer.parseInt(request.getParameter("car"))));
+            rent.setVehicle(vehicleService.findById(Integer.parseInt(request.getParameter("vehicle"))));
             rent.setClient(clientService.findById(Integer.parseInt(request.getParameter("client"))));
             rent.setFin(LocalDate.parse(request.getParameter("begin")));
             rent.setDebut(LocalDate.parse(request.getParameter("end")));
