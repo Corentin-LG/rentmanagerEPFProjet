@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="begin" class="col-sm-2 control-label">Date de debut</label>
+                                    <label for="begin" class="col-sm-2 control-label">Date de d&eacute;but</label>
 
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="begin" name="begin" required value="${rents.getDebut()}">
