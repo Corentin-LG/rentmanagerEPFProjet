@@ -14,7 +14,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Reservations
+                Réservations
             </h1>
         </section>
 
@@ -32,8 +32,8 @@
 
                                     <div class="col-sm-10">
                                         <select class="form-control" id="vehicle" name="vehicle">
-                                            <c:forEach items="${vehicles}" var="vehicle">
-                                            <option value="${vehicle.id}">${vehicle.modele} ${vehicle.constructeur}</option>
+                                            <c:forEach items="${vehicles}" var="vehicle_">
+                                            <option value="${vehicle_.getId()}" <c:if test="${vehicle_.getId() == rents.getVehicle().getId()}">selected</c:if>>[${vehicle_.getId()}] ${vehicle_.getModele()} ${vehicle_.getConstructeur()} - ${vehicle_.getNb_places()} place(s)</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -44,7 +44,7 @@
                                     <div class="col-sm-10">
                                         <select class="form-control" id="client" name="client">
                                             <c:forEach items="${clients}" var="client">
-                                            <option value="${client.id}">${client.nom} ${client.prenom}</option>
+                                            <option value="${client.getId()}" <c:if test="${client.getId() == rents.getClient().getId()}">selected</c:if>>${client.getNom()} ${client.getPrenom()}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -53,30 +53,26 @@
                                     <label for="begin" class="col-sm-2 control-label">Date de debut</label>
 
                                     <div class="col-sm-10">
-                                        <input type="begin" class="form-control" id="begin" name="begin" placeholder="Date de début [aaaa-mm-jj]">
+                                        <input type="date" class="form-control" id="begin" name="begin" required value="${rents.getDebut()}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="end" class="col-sm-2 control-label">Date de fin</label>
 
                                     <div class="col-sm-10">
-                                        <input type="end" class="form-control" id="end" name="end" placeholder="Date de fin [aaaa-mm-jj]">
+                                        <input type="date" class="form-control" id="end" name="end" required value="${rents.getFin()}">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button type="submit" class="btn btn-info pull-right">Modifier la réservation</button>
                             </div>
-                            <!-- /.box-footer -->
                         </form>
                     </div>
-                    <!-- /.box -->
                 </div>
-                <!-- /.col -->
             </div>
         </section>
-        <!-- /.content -->
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -84,5 +80,13 @@
 <!-- ./wrapper -->
 
 <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script>
+    $(function () {
+        $('[data-mask]').inputmask()
+    });
+</script>
 </body>
 </html>

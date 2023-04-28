@@ -84,4 +84,13 @@ public class ReservationService {
     public int count() throws ServiceException {
         return reservationDao.count();
     }
+    public void edit(long id, Reservation newRent) throws ServiceException {
+        try {
+            reservationDao.update(id, newRent);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new ServiceException(e);
+        }
+    }
+
 }
